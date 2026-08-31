@@ -1,0 +1,41 @@
+'use client';
+import { useState } from 'react';
+import { ArrowRight, ArrowUpRight, Search, MessageCircle, MapPin, Menu, X, Tractor, Handshake, Truck } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+
+const brands = ['Panter', 'Trevisan', 'São José', 'MetalAgro', 'KLR Implementos', 'Kawashima', 'Industrial DATEC', 'Incomagri', 'Cimisa'];
+const sellers = [{ name: 'Vendas 1', number: '5555999053887', display: '(55) 99905-3887' }, { name: 'Vendas 2', number: '5555992368795', display: '(55) 99236-8795' }];
+const normalize = (text: string) => text.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+export default function Home() {
+  const [query, setQuery] = useState('');
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [selected, setSelected] = useState<string | null>(null);
+  const found = brands.filter(brand => normalize(brand).includes(normalize(query)));
+  const message = `Olá! Vim pelo site da Top Agro e gostaria de informações ${selected ? `sobre equipamentos ${selected}` : 'sobre máquinas e implementos'}.`;
+  return <>
+    <a href="#catalogo" className="skip-link">Pular para o catálogo</a>
+    <div className="topline"><div className="wrap"><span><MapPin size={13} /> Chiapetta · Rio Grande do Sul</span><span>Máquinas, implementos e uma boa conversa.</span></div></div>
+    <header className="site-header"><div className="wrap header-inner">
+      <a href="#inicio" aria-label="Top Agro — início"><img className="logo" src="/brand/logo-horizontal.jpeg" alt="Top Agro" width="210" height="53" /></a>
+      <nav className={menuOpen ? 'navigation navigation-open' : 'navigation'} aria-label="Navegação principal"><a href="#catalogo" onClick={() => setMenuOpen(false)}>Catálogo</a><a href="#marcas" onClick={() => setMenuOpen(false)}>Nossas marcas</a><a href="#sobre" onClick={() => setMenuOpen(false)}>A Top Agro</a></nav>
+      <a className="button button-green header-contact" href="#contato"><MessageCircle size={17} /> Fale com a equipe</a>
+      <Button className="mobile-menu" variant="ghost" size="icon" aria-label={menuOpen ? 'Fechar menu' : 'Abrir menu'} aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? <X /> : <Menu />}</Button>
+    </div></header>
+    <main id="inicio"><section className="hero"><div className="wrap hero-grid">
+      <div className="hero-copy"><span className="eyebrow"><span /> TOP AGRO · MÁQUINAS E IMPLEMENTOS</span><h1>O trabalho é seu.<br />A força vem<br /><em>com a gente.</em></h1><p>Encontre equipamentos para o dia a dia no campo. Converse com quem entende e negocie as condições para a sua propriedade.</p><div className="hero-actions"><a href="#catalogo" className="button button-red">Explore o catálogo <ArrowRight size={18} /></a><a href="#contato" className="text-link">Converse com um vendedor <ArrowUpRight size={17} /></a></div><div className="hero-note"><span className="yellow-rule" /> Da escolha do equipamento à negociação.</div></div>
+      <div className="hero-brand"><div className="brand-paper"><img src="/brand/logo-original.jpeg" alt="Top Agro — equipamentos para o campo" width="1536" height="1024" /><div className="brand-paper-bottom"><span>PARCERIA QUE MOVE<br /><strong>o seu trabalho.</strong></span><Tractor size={45} strokeWidth={1.2} /></div></div><div className="hero-caption"><span>MÁQUINAS & IMPLEMENTOS</span><span>TOP AGRO / RS</span></div></div>
+    </div><img className="brand-ribbon" src="/brand/faixa-institucional.jpeg" alt="" /></section>
+    <div className="benefits wrap"><div><Tractor /><span><strong>Escolha com orientação</strong><small>Equipamentos para a sua necessidade</small></span></div><div><Handshake /><span><strong>Negocie com a equipe</strong><small>Converse sobre preço e financiamento</small></span></div><div><Truck /><span><strong>Combine sua entrega</strong><small>Consulte o frete para sua região</small></span></div></div>
+    <section className="catalog-section wrap" id="catalogo"><div className="section-heading"><div><span className="eyebrow green">CATÁLOGO TOP AGRO</span><h2>Seu próximo equipamento<br />começa por aqui.</h2></div><p>Explore nossas marcas e encontre o caminho<br className="desktop-break" /> para uma compra bem orientada.</p></div>
+      <article className="featured-product"><div className="product-photo"><img src="/products/trevisan-equipamento.webp" alt="Tratador e misturador de sementes Trevisan TMS350, com reservatório branco e estrutura verde" width="540" height="720" loading="lazy" /></div><div className="product-copy"><span className="eyebrow green">TREVISAN · SEMENTES</span><h3>Tratador e misturador<br />de sementes TMS350</h3><p>Conheça o equipamento e tire suas dúvidas com a equipe. Consulte disponibilidade, preço, frete e condições para a sua propriedade.</p><Button className="button button-green" onClick={() => { setSelected('Trevisan — TMS350'); document.getElementById('contato')?.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' }); }}>Consultar este equipamento <ArrowUpRight size={18} /></Button><small>Foto do acervo disponibilizado pela Top Agro.</small></div></article>
+      <div className="catalog-toolbar"><div className="search"><Search size={20} /><Input aria-label="Buscar uma marca" placeholder="Qual marca você procura?" value={query} onChange={event => setQuery(event.target.value)} />{query && <Button variant="ghost" size="icon" aria-label="Limpar busca" onClick={() => setQuery('')}><X size={16} /></Button>}</div><span aria-live="polite">{found.length} {found.length === 1 ? 'marca encontrada' : 'marcas disponíveis'}</span></div>
+      <div className="brand-grid" id="marcas">{found.map(brand => <button className="brand-card" key={brand} onClick={() => { setSelected(brand); document.getElementById('contato')?.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' }); }}><div className="brand-label">MÁQUINAS E IMPLEMENTOS</div><h3>{brand}</h3><div className="brand-card-bottom"><span>Consultar equipamentos</span><ArrowUpRight size={22} /></div></button>)}</div>
+      {found.length === 0 && <div className="empty-state"><h3>Nenhuma marca com esse nome.</h3><p>Tente outro termo ou limpe a busca para ver todas.</p><Button onClick={() => setQuery('')}>Ver todas as marcas</Button></div>}
+      <p className="catalog-note">Primeira prévia do catálogo. A seleção de fotos e a identificação dos modelos estão em preparação.</p>
+    </section>
+    <section className="about-section" id="sobre"><div className="wrap about-grid"><div><span className="eyebrow green">A TOP AGRO</span><h2>De Chiapetta,<br />perto do seu trabalho.</h2></div><div><p>Máquinas e implementos fazem parte do que vendemos. Entender o que você precisa faz parte de como atendemos.</p><p>Na Top Agro, você conversa com a equipe para escolher o equipamento e combinar preço, frete e possibilidades de financiamento.</p><a href="#contato" className="text-link">Vamos conversar <ArrowRight size={17} /></a></div></div></section>
+    <section className="contact-section wrap" id="contato"><div><span className="eyebrow">ATENDIMENTO TOP AGRO</span><h2>Qual é o próximo passo<br />da sua propriedade?</h2><p>{selected ? `Você selecionou ${selected}. Escolha um atendimento para consultar os equipamentos da marca.` : 'Conte para a equipe o que você procura. As condições são negociadas diretamente com um vendedor.'}</p>{selected && <button className="clear-selection" onClick={() => setSelected(null)}>Limpar marca selecionada ×</button>}</div><div className="contact-options">{sellers.map(seller => <a className="seller" key={seller.number} href={`https://wa.me/${seller.number}?text=${encodeURIComponent(message)}`} target="_blank" rel="noopener noreferrer"><MessageCircle size={24} /><span><strong>{seller.name}</strong><small>{seller.display}</small></span><ArrowUpRight size={20} /></a>)}<p>O WhatsApp abrirá com sua mensagem pronta.<br />Você decide quando enviar.</p></div></section>
+    </main><footer className="site-footer"><div className="wrap"><img src="/brand/logo-horizontal.jpeg" alt="Top Agro" width="158" height="40" /><p>Máquinas e implementos agrícolas<br />Chiapetta · RS</p><a href="#inicio">Voltar ao início ↑</a></div></footer>
+  </>;
+}

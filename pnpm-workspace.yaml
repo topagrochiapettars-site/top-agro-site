@@ -1,0 +1,5 @@
+storeDir: ../package-store
+allowBuilds:
+  esbuild: false
+  sharp: false
+  workerd: false
