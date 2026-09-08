@@ -1,9 +1,9 @@
 'use client';
 import { useState } from 'react';
+import { getWhatsAppLink, whatsappContacts } from '../lib/whatsapp';
 import { ArrowRight, ArrowUpRight, MapPin, Menu, X } from 'lucide-react';
 
 const brands = ['Panter', 'Trevisan', 'São José', 'MetalAgro', 'KLR Implementos', 'Kawashima', 'Industrial DATEC', 'Incomagri', 'Cimisa'];
-const sellers = [{ name: 'Atendimento comercial 1', number: '5555999053887', display: '(55) 99905-3887' }, { name: 'Atendimento comercial 2', number: '5555992368795', display: '(55) 99236-8795' }];
 const categories = [
   ['01', 'Preparação do solo', 'Grades e implementos para preparar a área com eficiência.'],
   ['02', 'Plantio e sementes', 'Soluções para tratamento, manejo e implantação da lavoura.'],
@@ -18,7 +18,6 @@ function WhatsAppIcon({ size = 20 }: { size?: number }) {
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [selected, setSelected] = useState<string | null>(null);
-  const message = `Olá! Vim pelo site da Top Agro e gostaria de informações ${selected ? `sobre ${selected}` : 'sobre máquinas e implementos'}.`;
   const selectAndContact = (item: string) => { setSelected(item); document.getElementById('contato')?.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' }); };
   return <>
     <a href="#equipamentos" className="skip-link">Pular para os equipamentos</a>
@@ -26,7 +25,7 @@ export default function Home() {
     <header className="site-header"><div className="wrap header-inner">
       <a className="brand-home" href="#inicio" aria-label="Top Agro — início"><img className="logo" src="/brand/logo-horizontal-transparent.png" alt="Top Agro" width="210" height="53" /></a>
       <nav className={menuOpen ? 'navigation navigation-open' : 'navigation'} aria-label="Navegação principal"><a href="#equipamentos" onClick={() => setMenuOpen(false)}>Equipamentos</a><a href="#como-funciona" onClick={() => setMenuOpen(false)}>Como funciona</a><a href="#sobre" onClick={() => setMenuOpen(false)}>A Top Agro</a><a href="#localizacao" onClick={() => setMenuOpen(false)}>Onde estamos</a></nav>
-      <a className="button header-contact" href="https://wa.me/5555999053887?text=Ol%C3%A1%21%20Vim%20pelo%20site%20da%20Top%20Agro%20e%20gostaria%20de%20falar%20com%20a%20equipe." target="_blank" rel="noopener noreferrer"><WhatsAppIcon size={18} /> Falar com a equipe</a>
+      <a className="button header-contact" href="#contato"><WhatsAppIcon size={18} /> Falar com a equipe</a>
       <button className="mobile-menu" aria-label={menuOpen ? 'Fechar menu' : 'Abrir menu'} aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? <X /> : <Menu />}</button>
     </div></header>
 
@@ -46,7 +45,7 @@ export default function Home() {
 
       <section className="about-section" id="sobre"><div className="wrap about-grid"><div className="about-image"><img src="/products/hero-grade-sunlight.jpg" alt="Equipamento agrícola em operação no campo" loading="lazy" /></div><div className="about-copy"><span className="eyebrow">A TOP AGRO</span><h2>Conhecimento comercial com os pés no campo.</h2><p>Máquinas e implementos fazem parte do que vendemos. Entender a sua necessidade faz parte de como atendemos.</p><p>Em Chiapetta, a Top Agro conecta o produtor a marcas e soluções para diferentes etapas do trabalho agrícola, com negociação direta e conversa clara.</p><a href="#contato" className="text-action">Conversar com a equipe <ArrowRight size={18} /></a></div></div></section>
 
-      <section className="contact-section" id="contato"><div className="wrap contact-grid"><div><span className="eyebrow light">ATENDIMENTO TOP AGRO</span><h2>Vamos encontrar o próximo equipamento da sua propriedade.</h2><p>{selected ? `Interesse selecionado: ${selected}. Escolha um contato para continuar pelo WhatsApp.` : 'Conte para a equipe o que você procura. Preço, frete e financiamento são negociados diretamente com um vendedor.'}</p>{selected && <button className="clear-selection" onClick={() => setSelected(null)}>Limpar seleção ×</button>}</div><div className="contact-options">{sellers.map(seller => <a className="seller" key={seller.number} href={`https://wa.me/${seller.number}?text=${encodeURIComponent(message)}`} target="_blank" rel="noopener noreferrer"><WhatsAppIcon size={25} /><span><strong>{seller.name}</strong><small>{seller.display}</small></span><ArrowUpRight size={20} /></a>)}</div></div></section>
+      <section className="contact-section" id="contato"><div className="wrap contact-grid"><div><span className="eyebrow light">ATENDIMENTO TOP AGRO</span><h2>Vamos encontrar o próximo equipamento da sua propriedade.</h2><p>{selected ? `Interesse selecionado: ${selected}. Escolha um contato para continuar pelo WhatsApp.` : 'Conte para a equipe o que você procura. Preço, frete e financiamento são negociados diretamente com um vendedor.'}</p>{selected && <button className="clear-selection" onClick={() => setSelected(null)}>Limpar seleção ×</button>}</div><div className="contact-options">{Object.values(whatsappContacts).map(seller => <a className="seller" key={seller.number} href={getWhatsAppLink(seller, selected)} target="_blank" rel="noopener noreferrer"><WhatsAppIcon size={25} /><span><strong>{seller.name}</strong><small>Atendimento Top Agro</small></span><ArrowUpRight size={20} /></a>)}</div></div></section>
     </main>
     <footer className="site-footer" id="localizacao"><div className="wrap"><img src="/brand/logo-horizontal-transparent.png" alt="Top Agro" width="165" height="42" /><p>Máquinas e implementos agrícolas<br />Chiapetta · Rio Grande do Sul</p><a href="#inicio">Voltar ao início ↑</a></div></footer>
   </>;
