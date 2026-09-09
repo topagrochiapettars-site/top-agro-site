@@ -88,3 +88,10 @@
   .brand-list button { grid-template-columns: 24px minmax(0, 1fr) 16px; gap: 8px; min-height: 76px; padding: 16px 12px; line-height: 1.4; }
   .brand-list button:not(:nth-child(3n+1)) { border-left: 1px solid var(--line); }
 }
+/* Compact editorial lists on mobile only. */
+@media (max-width: 767px) {
+  .category-item { padding: 18px 24px; }
+  .category-item h3 { margin: 12px 0 8px; }
+  .category-item > div { margin-top: 12px; padding-top: 8px; }
+  .brand-list button { grid-template-columns: 24px minmax(0, 1fr) 16px; gap: 8px; min-height: 44px; padding: 8px 4px; line-height: 1.4; }
+}
