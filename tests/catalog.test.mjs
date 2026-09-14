@@ -37,7 +37,7 @@ test('variants preserve nominal names and resolve only approved throughput', () 
   assert.equal(resolveProduct(datecAreaTotal).model, 'PACA 1000');
   assert.equal(resolveProduct(metalAgroMiniFabrica).variantId, undefined);
   assert.equal(resolveProduct(metalAgroMiniFabrica, 'missing'), undefined);
-  for (const [id, value] of [['500-kg', '500 kg/h'], ['1000-kg', '1.000 kg/h']]) assert.equal(resolveProduct(metalAgroMiniFabrica, id).content.specifications[0].value, value);
+  for (const [id, value] of [['500-kg', 'Aproximadamente 500 kg/h'], ['1000-kg', 'Aproximadamente 1.000 kg/h']]) assert.equal(resolveProduct(metalAgroMiniFabrica, id).content.specifications.find(item => item.id === 'producao').value, value);
 });
 test('stable-ID overrides replace specs; explicit empty lists replace common lists', () => {
   const family = structuredClone(datecAreaTotal);
