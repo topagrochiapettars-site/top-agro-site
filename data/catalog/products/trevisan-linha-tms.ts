@@ -1,0 +1,93 @@
+import type { ProductFamily } from '../../../types/catalog';
+
+export const trevisanLinhaTms: ProductFamily = {
+  id: 'trevisan-linha-tms', slug: 'trevisan-linha-tms',
+  name: 'Tratador e Misturador de Sementes Trevisan — Linha TMS',
+  categoryId: 'graos-sementes-plantio', brandId: 'trevisan',
+  status: 'draft', priority: 'P1', featured: false,
+  content: {
+    summary: 'Equipamento destinado ao tratamento e mistura de sementes, permitindo aplicar calda, inoculante, grafite e outros produtos compatíveis de maneira mais uniforme, reduzindo trabalho manual e acelerando o preparo para o plantio.',
+    benefits: [
+      { title: 'Tratamento mais uniforme das sementes' },
+      { title: 'Ciclo de mistura em aproximadamente 90 segundos' },
+      { title: 'Redução de mão de obra' },
+      { title: 'Menor desperdício de produto' },
+      { title: 'Pode ser utilizado no barracão ou próximo ao plantio' },
+      { title: 'Uma ou duas pessoas conseguem conduzir a operação' },
+    ],
+    specifications: [
+      { id: 'ciclo', label: 'Ciclo de mistura e tratamento', value: 'Aproximadamente 90 segundos' },
+      { id: 'inoculante-grafite', label: 'Aplicação de inoculante/grafite', value: 'Sim, conforme a configuração utilizada' },
+      { id: 'operacao', label: 'Operação', value: 'Normalmente uma pessoa consegue operar; com duas pessoas o fluxo fica mais confortável', group: 'Operação' },
+      { id: 'carregamento-bag', label: 'Carregamento com bag', value: 'Pode ser realizado diretamente com bag, conforme estrutura/configuração', group: 'Operação' },
+      { id: 'limpeza', label: 'Limpeza', value: 'Normalmente não há grande acúmulo interno, pois calda/grafite permanecem aderidos à semente. A necessidade de limpeza é simples e varia conforme o produto utilizado', group: 'Limpeza e manutenção' },
+      { id: 'manutencao', label: 'Manutenção', value: 'Construção simples e baixa exigência de manutenção', group: 'Limpeza e manutenção' },
+      { id: 'garantia', label: 'Garantia', value: '1 ano' },
+    ],
+    media: [],
+    applications: [
+      'Soja', 'Milho', 'Trigo', 'Aveia', 'Feijão',
+      'Outras sementes agrícolas compatíveis',
+      'Aplicação de inoculante', 'Aplicação de grafite',
+      'Tratamento com produtos líquidos compatíveis',
+    ],
+    steps: [
+      { title: 'Carrega', description: 'A semente é colocada no reservatório.' },
+      { title: 'Aplica', description: 'É adicionada a calda ou o produto de tratamento.' },
+      { title: 'Mistura', description: 'A rosca movimenta as sementes e distribui o produto.' },
+      { title: 'Aguarda', description: 'O ciclo ocorre em aproximadamente 90 segundos.' },
+      { title: 'Descarrega', description: 'A semente tratada é retirada por gravidade ou pelo sistema de descarga da configuração.' },
+    ],
+    faq: [
+      { question: 'Quanto tempo leva o tratamento?', answer: 'O ciclo de mistura e tratamento ocorre em aproximadamente 90 segundos.' },
+      { question: 'Qual modelo escolher?', answer: 'A escolha depende principalmente do volume de sementes que será tratado por ciclo: 300–350 kg, 550–650 kg ou 900–1.000 kg.' },
+      { question: 'Posso aplicar inoculante e grafite?', answer: 'Sim. A linha TMS permite aplicação de inoculante e grafite conforme a configuração utilizada.' },
+      { question: 'Precisa de muita mão de obra?', answer: 'Normalmente uma pessoa consegue conduzir a operação; com duas pessoas o fluxo pode ficar mais contínuo.' },
+      { question: 'Como é feita a limpeza?', answer: 'Como os produtos permanecem aderidos à semente, normalmente não há grande acúmulo interno. A limpeza necessária varia conforme o produto utilizado.' },
+    ],
+  },
+  variants: [
+    {
+      id: 'tms-350', name: 'TMS 350', model: 'TMS 350',
+      content: { specifications: [
+        { id: 'capacidade-tratamento', label: 'Capacidade por tratamento', value: '300 a 350 kg' },
+        { id: 'acionamento', label: 'Acionamento', value: 'TDP / motor elétrico / motor hidráulico' },
+        { id: 'reservatorio-calda', label: 'Reservatório de calda', value: 'Não' },
+        { id: 'descarga-plantadeira', label: 'Descarga direta na plantadeira', value: 'Não' },
+        { id: 'aplicacao-calda', label: 'Aplicação de calda', value: 'Manual, derramando o produto sobre a semente' },
+      ] },
+    },
+    {
+      id: 'tms-650', name: 'TMS 650', model: 'TMS 650',
+      content: { specifications: [
+        { id: 'capacidade-tratamento', label: 'Capacidade por tratamento', value: '550 a 650 kg' },
+        { id: 'acionamento', label: 'Acionamento', value: 'TDP / motoredutor' },
+        { id: 'reservatorio-calda', label: 'Reservatório de calda', value: '1 ou 2, opcionais, não inclusos', group: 'Opcionais' },
+        { id: 'descarga-plantadeira', label: 'Descarga direta na plantadeira', value: 'Sim' },
+        { id: 'opcional-motoredutor', label: 'Motoredutor 7,5 CV', value: 'Opcional, não incluso', group: 'Opcionais' },
+        { id: 'opcional-motor-monofasico', label: 'Motor monofásico', value: 'Opcional, não incluso', group: 'Opcionais' },
+        { id: 'opcional-dosador-simples', label: 'Kit dosador simples', value: 'Opcional, não incluso. Uma linha de aplicação', group: 'Opcionais' },
+        { id: 'opcional-arrasto', label: 'Arrasto', value: 'Opcional, não incluso', group: 'Opcionais' },
+        { id: 'opcional-cavalete-060', label: 'Cavalete 0,60 m', value: 'Opcional, não incluso', group: 'Opcionais' },
+        { id: 'opcional-cavalete-120', label: 'Cavalete 1,20 m', value: 'Opcional, não incluso', group: 'Opcionais' },
+      ] },
+    },
+    {
+      id: 'tms-1000', name: 'TMS 1000', model: 'TMS 1000',
+      content: { specifications: [
+        { id: 'capacidade-tratamento', label: 'Capacidade por tratamento', value: '900 a 1.000 kg' },
+        { id: 'acionamento', label: 'Acionamento', value: 'TDP / motor elétrico / motor hidráulico' },
+        { id: 'reservatorio-calda', label: 'Reservatório de calda', value: '1 ou 2, opcionais, não inclusos', group: 'Opcionais' },
+        { id: 'descarga-plantadeira', label: 'Descarga direta na plantadeira', value: 'Sim' },
+        { id: 'opcional-dosador-simples', label: 'Kit dosador simples', value: 'Opcional, não incluso. Uma linha de aplicação', group: 'Opcionais' },
+        { id: 'opcional-dosador-duplo', label: 'Kit dosador duplo', value: 'Opcional, não incluso. Duas linhas de aplicação, permitindo maior flexibilidade para trabalhar com produtos separados', group: 'Opcionais' },
+        { id: 'opcional-rosca-alongada', label: 'Rosca alongada', value: 'Opcional, não incluso', group: 'Opcionais' },
+        { id: 'opcional-corpo-expansao', label: 'Corpo para expansão', value: 'Opcional, não incluso', group: 'Opcionais' },
+        { id: 'opcional-arrasto', label: 'Arrasto', value: 'Opcional, não incluso', group: 'Opcionais' },
+        { id: 'opcional-cavalete-060', label: 'Cavalete 0,60 m', value: 'Opcional, não incluso', group: 'Opcionais' },
+        { id: 'opcional-cavalete-120', label: 'Cavalete 1,20 m', value: 'Opcional, não incluso', group: 'Opcionais' },
+      ] },
+    },
+  ],
+  comparisonSpecIds: ['capacidade-tratamento', 'acionamento', 'inoculante-grafite', 'reservatorio-calda', 'descarga-plantadeira'],
+};

@@ -12,9 +12,10 @@ const { validateCatalog } = load('../lib/catalog/validate.ts');
 const { datecAreaTotal } = load('../data/catalog/products/datec-area-total.ts');
 const { metalAgroMiniFabrica } = load('../data/catalog/products/metal-agro-mini-fabrica.ts');
 const { cimisaMicroCs3b } = load('../data/catalog/products/cimisa-micro-cs-3b.ts');
+const { trevisanLinhaTms } = load('../data/catalog/products/trevisan-linha-tms.ts');
 const { categories } = load('../data/catalog/categories.ts');
 const { brands } = load('../data/catalog/brands.ts');
-const data = () => structuredClone({ categories, brands, families: [datecAreaTotal, metalAgroMiniFabrica, cimisaMicroCs3b] });
+const data = () => structuredClone({ categories, brands, families: [datecAreaTotal, metalAgroMiniFabrica, cimisaMicroCs3b, trevisanLinhaTms] });
 
 test('draft catalog is valid but unavailable through every public lookup', () => {
   assert.deepEqual(validateCatalog(data()), []);
@@ -50,6 +51,32 @@ test('stable-ID overrides replace specs; explicit empty lists replace common lis
   assert.equal(family.content.specifications[0].value, 'base');
   result.content.specifications[0].value = 'mutated';
   assert.equal(family.variants[0].content.specifications[0].value, 'override');
+});
+
+test('TMS variants inherit common content without leaking configuration-specific options', () => {
+  const common = resolveProduct(trevisanLinhaTms);
+  assert.equal(common.variantId, undefined);
+  assert.equal(common.content.specifications.some(item => item.id === 'capacidade-tratamento'), false);
+  const models = [
+    ['tms-350', '300 a 350 kg', 'Não', false],
+    ['tms-650', '550 a 650 kg', 'Sim', false],
+    ['tms-1000', '900 a 1.000 kg', 'Sim', true],
+  ];
+  for (const [id, capacity, discharge, dualDoser] of models) {
+    const product = resolveProduct(trevisanLinhaTms, id);
+    const specs = new Map(product.content.specifications.map(item => [item.id, item]));
+    assert.equal(specs.get('capacidade-tratamento').value, capacity);
+    assert.equal(specs.get('descarga-plantadeira').value, discharge);
+    assert.equal(specs.get('garantia').value, '1 ano');
+    assert.equal(specs.has('opcional-dosador-duplo'), dualDoser);
+    assert.equal(specs.has('opcional-motoredutor'), id === 'tms-650');
+    assert.equal(specs.has('aplicacao-calda'), id === 'tms-350');
+    const options = product.content.specifications.filter(item => item.group === 'Opcionais');
+    assert.equal(options.length > 0, id !== 'tms-350');
+    assert.ok(options.every(item => /opciona(?:l|is)/i.test(item.value) && item.value.includes('não incluso')));
+    assert.deepEqual(product.content.steps, trevisanLinhaTms.content.steps);
+    assert.deepEqual(product.content.media, []);
+  }
 });
 test('invalid references, duplicates and incomplete publication fail closed', () => {
   const input = data();
