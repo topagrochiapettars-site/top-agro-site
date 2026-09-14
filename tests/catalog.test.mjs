@@ -11,18 +11,26 @@ const { resolveProduct } = load('../lib/catalog/resolve-product.ts');
 const { validateCatalog } = load('../lib/catalog/validate.ts');
 const { datecAreaTotal } = load('../data/catalog/products/datec-area-total.ts');
 const { metalAgroMiniFabrica } = load('../data/catalog/products/metal-agro-mini-fabrica.ts');
+const { cimisaMicroCs3b } = load('../data/catalog/products/cimisa-micro-cs-3b.ts');
 const { categories } = load('../data/catalog/categories.ts');
 const { brands } = load('../data/catalog/brands.ts');
-const data = () => structuredClone({ categories, brands, families: [datecAreaTotal, metalAgroMiniFabrica] });
+const data = () => structuredClone({ categories, brands, families: [datecAreaTotal, metalAgroMiniFabrica, cimisaMicroCs3b] });
 
-test('draft pilots are valid but unavailable through every public lookup', () => {
+test('draft catalog is valid but unavailable through every public lookup', () => {
   assert.deepEqual(validateCatalog(data()), []);
   assert.deepEqual(catalog.listProducts(), []);
   assert.deepEqual(catalog.listRoutes(), []);
   assert.deepEqual(catalog.listCategories(), []);
-  assert.equal(catalog.getProduct(datecAreaTotal.id), undefined);
-  assert.equal(catalog.resolveProduct(datecAreaTotal.id), undefined);
-  assert.equal(catalog.getByRoute(categories[0].slug, datecAreaTotal.slug), undefined);
+  assert.deepEqual(catalog.listBrands(), []);
+  for (const family of data().families) {
+    const category = categories.find(item => item.id === family.categoryId);
+    assert.deepEqual(catalog.listProducts({ categoryId: family.categoryId, featured: false }), []);
+    assert.equal(catalog.getProduct(family.id), undefined);
+    assert.equal(catalog.resolveProduct(family.id), undefined);
+    for (const variant of family.variants) assert.equal(catalog.resolveProduct(family.id, variant.id), undefined);
+    assert.equal(catalog.getByRoute(category.slug, family.slug), undefined);
+    assert.deepEqual(catalog.getRelated(family.id), []);
+  }
 });
 test('variants preserve nominal names and resolve only approved throughput', () => {
   assert.equal(resolveProduct(datecAreaTotal).model, 'PACA 1000');

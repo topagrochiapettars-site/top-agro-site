@@ -3,6 +3,7 @@ import { categories } from '../../data/catalog/categories';
 import { brands } from '../../data/catalog/brands';
 import { datecAreaTotal } from '../../data/catalog/products/datec-area-total';
 import { metalAgroMiniFabrica } from '../../data/catalog/products/metal-agro-mini-fabrica';
+import { cimisaMicroCs3b } from '../../data/catalog/products/cimisa-micro-cs-3b';
 import { validateCatalog } from './validate';
 import { resolveProduct } from './resolve-product';
 
@@ -34,4 +35,4 @@ export function createCatalogQueries(input: Catalog) {
   function categoriesFor(id: string) { return catalog.categories.find(item => item.id === id)!.slug; }
 }
 
-export const catalog = createCatalogQueries({ categories, brands, families: [datecAreaTotal, metalAgroMiniFabrica] });
+export const catalog = createCatalogQueries({ categories, brands, families: [datecAreaTotal, metalAgroMiniFabrica, cimisaMicroCs3b] });

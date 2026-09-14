@@ -1,0 +1,58 @@
+import type { ProductFamily } from '../../../types/catalog';
+
+export const cimisaMicroCs3b: ProductFamily = {
+  id: 'cimisa-micro-cs-3b', slug: 'cimisa-micro-cs-3b',
+  name: 'Classificador e Padronizador de Sementes CIMISA Micro CS-3B',
+  categoryId: 'graos-sementes-plantio', brandId: 'cimisa',
+  status: 'draft', priority: 'P2', featured: false,
+  content: {
+    summary: 'Equipamento para pré-limpeza, classificação e padronização de sementes/grãos em uma única passagem, separando o material por tamanho através de peneiras e diferentes saídas.',
+    benefits: [
+      { title: 'Pré-limpa, classifica e padroniza em uma única passagem' },
+      { title: 'Separa sementes/grãos por tamanho' },
+      { title: 'Ajuda a obter lotes mais uniformes' },
+      { title: 'Reduz o trabalho manual de seleção e limpeza' },
+    ],
+    specifications: [
+      { id: 'pre-limpeza', label: 'Capacidade de pré-limpeza', value: 'Até 1.500 kg/h' },
+      { id: 'classificacao-padronizacao', label: 'Capacidade de classificação/padronização', value: 'Até 700 kg/h' },
+      { id: 'peneiras', label: 'Peneiras', value: '3' },
+      { id: 'saidas', label: 'Bicas de ensaque/saídas', value: '4' },
+      { id: 'altura', label: 'Altura', value: '1,65 m' },
+      { id: 'largura', label: 'Largura', value: '1,10 m' },
+      { id: 'comprimento', label: 'Comprimento', value: '1,79 m' },
+      { id: 'largura-peneiras', label: 'Largura das peneiras', value: '0,47 m' },
+      { id: 'peso', label: 'Peso aproximado', value: '270 kg' },
+      { id: 'estrutura', label: 'Estrutura', value: 'Tubo industrial' },
+      { id: 'motor', label: 'Motor', value: 'WEG 1 CV', group: 'Motor da unidade física da Top Agro' },
+      { id: 'frequencia', label: 'Frequência', value: '60 Hz', group: 'Motor da unidade física da Top Agro' },
+      { id: 'rotacao-motor', label: 'Rotação do motor', value: '1.730 rpm', group: 'Motor da unidade física da Top Agro' },
+      { id: 'tensao-plaqueta', label: 'Tensão indicada na plaqueta', value: '110–127 / 220–254 V', group: 'Motor da unidade física da Top Agro' },
+      { id: 'opcional-jogos-peneiras', label: 'Jogos de peneiras para diferentes culturas', value: 'Opcional, não incluso', group: 'Opcionais' },
+      { id: 'opcional-base-elevada', label: 'Base elevada', value: 'Opcional, não incluso', group: 'Opcionais' },
+      { id: 'opcional-direcionador-bag', label: 'Direcionador para bag', value: 'Opcional, não incluso', group: 'Opcionais' },
+      { id: 'opcional-elevadores', label: 'Elevadores', value: 'Opcional, não incluso', group: 'Opcionais' },
+      { id: 'opcional-funil-bag', label: 'Funil para bag', value: 'Opcional, não incluso', group: 'Opcionais' },
+      { id: 'opcional-plataforma-bag', label: 'Plataforma para bag', value: 'Opcional, não incluso', group: 'Opcionais' },
+    ],
+    media: [],
+    applications: [
+      'Classificação de sementes',
+      'Padronização de grãos',
+      'Pré-limpeza antes do beneficiamento/plantio',
+    ],
+    steps: [
+      { title: 'Alimenta', description: 'O grão ou semente entra pela moega superior.' },
+      { title: 'Pré-limpa', description: 'Impurezas e materiais fora do padrão começam a ser separados.' },
+      { title: 'Classifica', description: 'O material passa pelas três peneiras.' },
+      { title: 'Padroniza e separa', description: 'Diferentes frações/tamanhos são direcionados às respectivas saídas.' },
+    ],
+    faq: [
+      { question: 'O CS-3B faz somente classificação?', answer: 'Não. O equipamento reúne pré-limpeza, classificação e padronização em uma única passagem.' },
+      { question: 'As peneiras são sempre as mesmas?', answer: 'Não. O jogo de peneiras deve ser escolhido conforme o material e o padrão de classificação desejado.' },
+      { question: 'Qual a capacidade de trabalho?', answer: 'Até aproximadamente 1.500 kg/h em pré-limpeza e até 700 kg/h em classificação/padronização, conforme produto e condições de operação.' },
+      { question: 'É possível trabalhar com bags?', answer: 'Existem opcionais para facilitar alimentação e direcionamento para bags.' },
+    ],
+  },
+  variants: [{ id: 'micro-cs-3b', name: 'Micro CS-3B', model: 'Micro CS-3B' }],
+};
