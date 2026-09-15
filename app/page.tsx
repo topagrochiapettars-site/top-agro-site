@@ -1,7 +1,11 @@
 'use client';
-import { useEffect, useRef, useState } from 'react';
+/* oxlint-disable next/no-img-element -- Preserve approved Home images during header extraction. */
+import { useState } from 'react';
 import { getWhatsAppLink, whatsappContacts } from '../lib/whatsapp';
-import { ArrowRight, ArrowUpRight, MapPin, Menu, X } from 'lucide-react';
+import { ArrowRight, ArrowUpRight } from 'lucide-react';
+
+import { SiteHeader } from '../components/site-header';
+import { WhatsAppIcon } from '../components/whatsapp-icon';
 
 const brands = ['Panter', 'Trevisan', 'São José', 'MetalAgro', 'KLR Implementos', 'Kawashima', 'Industrial DATEC', 'Incomagri', 'Cimisa'];
 const categories = [
@@ -11,35 +15,12 @@ const categories = [
   ['04', 'Máquinas e apoio', 'Opções para diferentes rotinas e necessidades da propriedade.'],
 ];
 
-function WhatsAppIcon({ size = 20 }: { size?: number }) {
-  return <svg aria-hidden="true" viewBox="0 0 24 24" width={size} height={size} fill="currentColor"><path d="M12.04 2a9.84 9.84 0 0 0-8.48 14.83L2 22l5.3-1.5A9.97 9.97 0 1 0 12.04 2Zm0 17.97a8.04 8.04 0 0 1-4.1-1.12l-.3-.18-3.15.89.91-3.06-.2-.32a7.86 7.86 0 1 1 6.84 3.79Zm4.42-5.9c-.24-.12-1.43-.7-1.65-.79-.22-.08-.38-.12-.54.12-.16.24-.62.79-.76.95-.14.16-.28.18-.52.06-.24-.12-1.02-.37-1.94-1.19a7.3 7.3 0 0 1-1.34-1.67c-.14-.24-.02-.37.1-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.19-.47-.39-.4-.54-.41h-.46c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.69 2.58 4.1 3.62.57.25 1.02.39 1.37.5.58.18 1.1.16 1.51.1.46-.07 1.43-.59 1.63-1.15.2-.56.2-1.05.14-1.15-.06-.1-.22-.16-.46-.28Z" /></svg>;
-}
-
 export default function Home() {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const menuButtonRef = useRef<HTMLButtonElement>(null);
-  useEffect(() => {
-    if (!menuOpen) return;
-    const closeOnEscape = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        setMenuOpen(false);
-        menuButtonRef.current?.focus();
-      }
-    };
-    document.addEventListener('keydown', closeOnEscape);
-    return () => document.removeEventListener('keydown', closeOnEscape);
-  }, [menuOpen]);
   const [selected, setSelected] = useState<string | null>(null);
   const selectAndContact = (item: string) => { setSelected(item); document.getElementById('contato')?.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' }); };
   return <>
     <a href="#equipamentos" className="skip-link">Pular para os equipamentos</a>
-    <div className="topline"><div className="wrap"><span><MapPin size={13} /> Chiapetta · Rio Grande do Sul</span><span>Atendimento direto para quem produz.</span></div></div>
-    <header className="site-header"><div className="wrap header-inner">
-      <a className="brand-home" href="#inicio" aria-label="Top Agro — início"><img className="logo" src="/brand/logo-horizontal-transparent.png" alt="Top Agro" width="210" height="53" /></a>
-      <nav id="primary-navigation" className={menuOpen ? 'navigation navigation-open' : 'navigation'} aria-label="Navegação principal"><a href="#equipamentos" onClick={() => setMenuOpen(false)}>Equipamentos</a><a href="#como-funciona" onClick={() => setMenuOpen(false)}>Como funciona</a><a href="#sobre" onClick={() => setMenuOpen(false)}>A Top Agro</a><a href="#localizacao" onClick={() => setMenuOpen(false)}>Onde estamos</a></nav>
-      <a className="button header-contact" href="#contato" aria-label="Falar com a equipe" onClick={() => setMenuOpen(false)}><WhatsAppIcon size={18} /> Falar com a equipe</a>
-      <button ref={menuButtonRef} className="mobile-menu" aria-controls="primary-navigation" aria-label={menuOpen ? 'Fechar menu' : 'Abrir menu'} aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? <X /> : <Menu />}</button>
-    </div></header>
+    <SiteHeader />
 
     <main id="inicio">
       <section className="hero"><img className="hero-photo" src="/products/hero-grade-sunlight.jpg" alt="Trator com grade agrícola trabalhando em uma lavoura sob céu azul e luz entre as nuvens" width="1672" height="941" fetchPriority="high" /><div className="hero-overlay" />
