@@ -81,6 +81,8 @@ test('TMS variants inherit common content without leaking configuration-specific
 test('invalid references, duplicates and incomplete publication fail closed', () => {
   const input = data();
   input.families[0].status = 'published';
+  input.families[0].content.media = [];
+  delete input.families[0].content.primaryImageId;
   input.families[0].brandId = 'missing';
   input.families.push(structuredClone(input.families[0]));
   assert.ok(validateCatalog(input).length >= 5);

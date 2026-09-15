@@ -41,7 +41,8 @@ export const datecAreaTotal: ProductFamily = {
       { id: 'corte-minimo', label: 'Recomendação mínima de corte no manual', value: '7 mm', group: 'Informações técnicas' },
     ],
     highlightSpecIds: ['largura-nominal', 'largura-util', 'potencia-trator'],
-    media: [],
+    media: [{ id: 'paca-1000-capa', type: 'image', src: '/products/datec-paca-1000-capa.png', description: 'Plataforma de Área Total DATEC PACA 1000 vista de frente, com dois tambores de recolhimento', origin: 'top-agro', width: 1254, height: 1254 }],
+    primaryImageId: 'paca-1000-capa',
     applications: [
       'Milho', 'Sorgo', 'Cana-de-açúcar', 'Aveia', 'Azevém', 'Trigo',
       'Braquiárias', 'Capiaçu', 'Mombaça',

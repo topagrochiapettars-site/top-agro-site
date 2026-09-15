@@ -1,11 +1,13 @@
 import { Check, ImageOff } from 'lucide-react';
 import { SiteHeader } from '../site-header';
 import Link from 'next/link';
+import Image from 'next/image';
 import type { ProductPageData } from '../../lib/catalog/product-page';
 import styles from './product-detail.module.css';
 
 export function ProductDetail({ product, category, brand }: ProductPageData) {
   const { content } = product;
+  const primaryImage = content.media.find(item => item.id === content.primaryImageId && item.type === 'image');
   const isPaca = product.familyId === 'datec-area-total' && product.variantId === 'paca-1000';
   // Approved hero copy only; the full technical catalog stays unchanged.
   const title = isPaca ? 'Plataforma de Área Total' : product.name;
@@ -32,9 +34,11 @@ export function ProductDetail({ product, category, brand }: ProductPageData) {
           </ol>
         </nav>
         <div className={styles.layout}>
-          <div className={styles.media}>
-            <ImageOff size={40} strokeWidth={1} aria-hidden="true" />
-            <span>Imagens em preparação</span>
+          <div className={`${styles.media}${primaryImage ? ` ${styles.mediaWithImage}` : ''}`}>
+            {primaryImage ? <Image src={primaryImage.src} alt={primaryImage.description} fill unoptimized priority style={{ objectFit: 'contain' }} /> : <>
+              <ImageOff size={40} strokeWidth={1} aria-hidden="true" />
+              <span>Imagens em preparação</span>
+            </>}
           </div>
           <section className={styles.info} aria-labelledby="product-title">
             <p className={styles.brand}>{brand.name}</p>
