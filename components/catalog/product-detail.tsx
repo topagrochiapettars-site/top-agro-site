@@ -2,11 +2,14 @@ import { Check } from 'lucide-react';
 import { SiteHeader } from '../site-header';
 import Link from 'next/link';
 import { ProductGallery } from './product-gallery';
+import { ProductTestimonial } from './product-testimonial';
 import type { ProductPageData } from '../../lib/catalog/product-page';
 import styles from './product-detail.module.css';
 
 export function ProductDetail({ product, category, brand }: ProductPageData) {
   const { content } = product;
+  const testimonialMediaIds = new Set(content.testimonials?.map(item => item.mediaId));
+  const galleryMedia = content.media.filter(item => !testimonialMediaIds.has(item.id));
   const isPaca = product.familyId === 'datec-area-total' && product.variantId === 'paca-1000';
   // Approved hero copy only; the full technical catalog stays unchanged.
   const title = isPaca ? 'Plataforma de Área Total' : product.name;
@@ -33,7 +36,7 @@ export function ProductDetail({ product, category, brand }: ProductPageData) {
           </ol>
         </nav>
         <div className={styles.layout}>
-          <ProductGallery key={`${product.familyId}-${product.variantId}`} media={content.media} primaryImageId={content.primaryImageId} />
+          <ProductGallery key={`${product.familyId}-${product.variantId}`} media={galleryMedia} primaryImageId={content.primaryImageId} />
           <section className={styles.info} aria-labelledby="product-title">
             <p className={styles.brand}>{brand.name}</p>
             <h1 id="product-title">{title}</h1>
@@ -49,6 +52,7 @@ export function ProductDetail({ product, category, brand }: ProductPageData) {
             </ul>}
           </section>
         </div>
+        {content.testimonials?.map(testimonial => <ProductTestimonial key={testimonial.id} testimonial={testimonial} media={content.media.find(item => item.id === testimonial.mediaId)} introduction={isPaca ? 'Veja a PACA 1000 em operação real e o retorno de quem já utiliza o equipamento no campo.' : undefined} />)}
       </div>
     </main></>
   );
