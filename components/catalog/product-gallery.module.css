@@ -1,13 +1,13 @@
 .gallery { min-width: 0; }
-.frame { position: relative; aspect-ratio: 4 / 3; background: #fff; touch-action: pan-y pinch-zoom; }
+.frame { position: relative; aspect-ratio: 1; background: var(--white); touch-action: pan-y pinch-zoom; }
 .placeholder { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; aspect-ratio: 16 / 9; background: var(--paper); color: var(--muted); font-size: 14px; }
 .controls { display: flex; justify-content: center; align-items: center; gap: 12px; margin-top: 4px; color: var(--muted); font-size: 12px; }
 .controls button { display: grid; place-items: center; width: 44px; height: 44px; border: 0; background: transparent; color: var(--green); }
 .thumbnails { display: none; }
 @media (min-width: 768px) {
-  .frame { aspect-ratio: 16 / 8; }
+  .placeholder { aspect-ratio: 16 / 8; }
   .thumbnails { display: flex; gap: 10px; overflow-x: auto; padding: 5px; }
-  .thumbnails button { flex: 0 0 68px; padding: 2px; border: 1px solid transparent; background: #fff; }
+  .thumbnails button { flex: 0 0 68px; padding: 2px; border: 1px solid transparent; background: var(--white); }
   .thumbnails button[aria-pressed='true'] { border: 2px solid var(--green); padding: 1px; }
 }
-@media (min-width: 1024px) { .frame { aspect-ratio: 1; } }
+@media (min-width: 1024px) { .placeholder { aspect-ratio: 1; } }
