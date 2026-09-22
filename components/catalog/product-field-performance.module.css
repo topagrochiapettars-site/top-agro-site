@@ -1,0 +1,21 @@
+.section { margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--line); }
+.eyebrow { color: var(--muted); font-size: 11px; font-weight: 600; letter-spacing: .12em; margin-bottom: 12px; }
+.section h2 { max-width: 760px; font-size: 32px; font-weight: 800; letter-spacing: -.035em; line-height: 1.15; }
+.introduction { max-width: 720px; margin-top: 16px; font-size: 16px; line-height: 1.6; color: var(--muted); }
+.benefits { display: grid; list-style: none; padding: 0; margin: 24px 0 0; }
+.benefits li { padding: 20px 0; border-top: 1px solid var(--line); font-size: 20px; line-height: 1.4; letter-spacing: -.02em; color: var(--green); }
+.applications { margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--line); }
+.applications h3 { max-width: 560px; font-size: 24px; font-weight: 700; line-height: 1.25; letter-spacing: -.025em; }
+.applications p { max-width: 640px; margin-top: 12px; color: var(--muted); font-size: 16px; line-height: 1.6; }
+.cultures { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; padding: 0; margin: 24px 0 0; list-style: none; font-size: 14px; line-height: 1.4; }
+.cultures li { display: flex; align-items: center; gap: 12px; min-width: 0; min-height: 44px; padding: 8px 12px; background: color-mix(in srgb, var(--paper) 30%, var(--white)); }
+.cultures svg { flex-shrink: 0; color: var(--green); }
+@media (min-width: 768px) {
+  .section { margin-top: 64px; padding-top: 40px; }
+  .section h2 { font-size: 40px; }
+  .benefits { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 48px; margin-top: 32px; }
+  .benefits li { padding-block: 24px; font-size: 24px; }
+  .applications { margin-top: 32px; padding-top: 32px; }
+  .cultures { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+}
+@media (min-width: 1024px) { .cultures { grid-template-columns: repeat(5, minmax(0, 1fr)); } }

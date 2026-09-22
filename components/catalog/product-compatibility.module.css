@@ -1,0 +1,27 @@
+.section { margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--line); }
+.heading h2 { font-size: 32px; font-weight: 800; line-height: 1.15; letter-spacing: -.035em; }
+.introduction { margin-top: 20px; color: var(--muted); font-size: 16px; line-height: 1.6; }
+.introduction .lead { color: var(--green); font-size: 20px; line-height: 1.4; margin-bottom: 8px; }
+.list { display: grid; margin: 24px 0 0; }
+.list > div { display: grid; gap: 8px; padding-block: 24px; border-top: 1px solid color-mix(in srgb, var(--line) 60%, var(--white)); }
+.list dt { font-weight: 700; font-size: 17px; color: var(--green); }
+.list dd { min-width: 0; margin: 0; color: var(--muted); font-size: 16px; line-height: 1.6; overflow-wrap: anywhere; }
+.closing { display: flex; flex-direction: column; gap: 20px; margin-top: 24px; padding: 28px 24px; background: color-mix(in srgb, var(--paper) 80%, var(--white)); }
+.closing h3 { font-size: 22px; line-height: 1.25; letter-spacing: -.025em; margin-bottom: 12px; }
+.note { margin-top: 16px; max-width: 800px; color: var(--muted); font-size: 13px; line-height: 1.6; }
+.closing p { max-width: 640px; font-size: 16px; line-height: 1.6; }
+.closing strong { font-weight: 600; }
+.cta { display: inline-flex; justify-content: center; align-items: center; min-height: 48px; padding: 12px 24px; background: var(--green); color: var(--white); font-size: 15px; font-weight: 700; text-align: center; }
+.cta:hover { text-decoration: underline; text-underline-offset: 4px; }
+.cta:focus-visible { outline: 2px solid var(--green); outline-offset: 4px; }
+@media (min-width: 768px) {
+  .section { margin-top: 64px; padding-top: 40px; }
+  .heading { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 40px; align-items: center; }
+  .heading h2 { font-size: 40px; }
+  .introduction { margin: 0; }
+  .list { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 56px; margin-top: 32px; }
+  .list > div { align-content: start; gap: 8px; }
+  .closing { flex-direction: row; justify-content: flex-start; align-items: center; gap: 24px; margin-top: 24px; padding: 40px 32px; }
+  .closing > div { flex: 0 1 640px; min-width: 0; }
+  .cta { flex-shrink: 0; }
+}
