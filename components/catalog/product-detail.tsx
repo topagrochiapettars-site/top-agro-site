@@ -5,6 +5,8 @@ import { ProductGallery } from './product-gallery';
 import { ProductTestimonial } from './product-testimonial';
 import { ProductFieldPerformance } from './product-field-performance';
 import { ProductCompatibility } from './product-compatibility';
+import { ProductOperation } from './product-operation';
+import { pacaOperation } from '../../data/catalog/paca-operation';
 import { getPacaCompatibility } from '../../data/catalog/paca-compatibility';
 import { getPacaFieldPerformance } from '../../data/catalog/paca-field-performance';
 import type { ProductPageData } from '../../lib/catalog/product-page';
@@ -59,6 +61,7 @@ export function ProductDetail({ product, category, brand }: ProductPageData) {
         {content.testimonials?.map(testimonial => <ProductTestimonial key={testimonial.id} testimonial={testimonial} media={content.media.find(item => item.id === testimonial.mediaId)} introduction={isPaca ? 'Veja a PACA 1000 em operação real e o retorno de quem já utiliza o equipamento no campo.' : undefined} />)}
         {isPaca && <ProductFieldPerformance {...getPacaFieldPerformance(content)} />}
         {isPaca && <ProductCompatibility model={product.model ?? product.name} specifications={getPacaCompatibility(content.specifications)} />}
+        {isPaca && <ProductOperation {...pacaOperation} />}
       </div>
     </main></>
   );
