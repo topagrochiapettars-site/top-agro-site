@@ -1,0 +1,16 @@
+.section { margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--line); }
+.section h2 { font-size: 32px; font-weight: 800; line-height: 1.15; letter-spacing: -.035em; }
+.grid { display: grid; margin: 24px 0 0; }
+.grid > div { min-width: 0; padding-block: 24px; border-top: 1px solid color-mix(in srgb, var(--line) 60%, var(--white)); }
+.grid dt { color: var(--muted); font-size: 14px; line-height: 1.5; }
+.grid dd { margin: 8px 0 0; color: var(--green); font-size: 20px; font-weight: 600; line-height: 1.4; overflow-wrap: anywhere; }
+.note { max-width: 800px; margin-top: 16px; color: var(--muted); font-size: 13px; line-height: 1.6; }
+.secondary { display: flex; flex-wrap: wrap; gap: 12px 32px; margin: 0; padding-top: 16px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; line-height: 1.6; }
+.secondary > div { display: flex; gap: 8px; }
+.secondary dt { font-weight: 400; }
+.secondary dd { margin: 0; font-weight: 500; }
+@media (min-width: 768px) {
+  .section { margin-top: 64px; padding-top: 40px; }
+  .section h2 { font-size: 40px; }
+  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 56px; margin-top: 32px; }
+}

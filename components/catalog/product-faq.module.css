@@ -1,0 +1,19 @@
+.section { margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--line); }
+.content { max-width: 880px; }
+.section h2 { font-size: 32px; font-weight: 800; line-height: 1.15; letter-spacing: -.035em; }
+.questions { margin-top: 24px; }
+.questions details { border-bottom: 1px solid var(--line); }
+.questions summary { display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 64px; padding-block: 20px; color: var(--green); font-size: 18px; font-weight: 600; line-height: 1.45; cursor: pointer; list-style: none; }
+.questions summary::-webkit-details-marker { display: none; }
+.questions summary:focus-visible { outline: 2px solid var(--green); outline-offset: 4px; }
+.indicator { flex: 0 0 16px; position: relative; width: 16px; height: 16px; }
+.indicator::before, .indicator::after { content: ''; position: absolute; background: currentColor; }
+.indicator::before { width: 12px; height: 1px; left: 2px; top: 7px; }
+.indicator::after { width: 1px; height: 12px; left: 7px; top: 2px; }
+.questions details[open] .indicator::after { display: none; }
+.answer { margin: 0; padding: 0 40px 24px 0; color: var(--muted); font-size: 16px; line-height: 1.7; }
+@media (min-width: 768px) {
+  .section { margin-top: 64px; padding-top: 40px; }
+  .section h2 { font-size: 40px; }
+  .questions { margin-top: 32px; }
+}

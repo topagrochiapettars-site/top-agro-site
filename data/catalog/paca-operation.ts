@@ -1,4 +1,5 @@
 export const pacaOperation = {
+  eyebrow: 'FUNCIONAMENTO',
   title: 'Entenda o funcionamento',
   introduction: 'Em três etapas, veja como a PACA 1000 corta, recolhe, organiza o fluxo e alimenta a ensiladeira.',
   steps: [
@@ -9,7 +10,7 @@ export const pacaOperation = {
       alt: 'Ilustração da PACA 1000 cortando e recolhendo plantas pela base',
     },
     {
-      title: 'Organiza o fluxo',
+      title: 'Puxa e pré-processa',
       description: 'Os dois tambores puxam o material e fazem o pré-processamento inicial, mantendo a alimentação mais uniforme.',
       image: '/products/paca-1000-funcionamento-02-tambores.png',
       alt: 'Ilustração dos dois tambores da PACA 1000 conduzindo o material para o centro',
