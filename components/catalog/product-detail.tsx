@@ -8,6 +8,7 @@ import { ProductCompatibility } from './product-compatibility';
 import { ProductOperation } from './product-operation';
 import { ProductTechnicalSpecifications } from './product-technical-specifications';
 import { ProductFaq } from './product-faq';
+import { ProductFinalContact } from './product-final-contact';
 import { pacaFaq } from '../../data/catalog/paca-faq';
 import { pacaTechnicalSpecifications } from '../../data/catalog/paca-technical-specifications';
 import { pacaOperation } from '../../data/catalog/paca-operation';
@@ -55,19 +56,20 @@ export function ProductDetail({ product, category, brand }: ProductPageData) {
             {specs.length > 0 && <dl className={styles.specs}>{specs.map(spec => (
               <div key={spec.id}><dt>{spec.label}</dt><dd>{spec.value}</dd></div>
             ))}</dl>}
-            <button type="button" disabled className={styles.cta}>Falar com um vendedor</button>
+            <Link href="/#contato" className={styles.cta}>Falar com a equipe</Link>
             {isPaca && <p className={styles.ctaHint}>Informe a marca e o modelo da sua ensiladeira.</p>}
             {!!benefits?.length && <ul className={styles.benefits} aria-label="Principais benefícios">
               {benefits.map(benefit => <li key={benefit}><Check size={16} aria-hidden="true" /><span>{benefit}</span></li>)}
             </ul>}
           </section>
         </div>
-        {content.testimonials?.map(testimonial => <ProductTestimonial key={testimonial.id} testimonial={testimonial} media={content.media.find(item => item.id === testimonial.mediaId)} introduction={isPaca ? 'Veja a PACA 1000 em operação real e o retorno de quem já utiliza o equipamento no campo.' : undefined} />)}
+        {content.testimonials?.map(testimonial => <ProductTestimonial key={testimonial.id} testimonial={testimonial} media={content.media.find(item => item.id === testimonial.mediaId)} introduction={isPaca ? 'Veja a Plataforma de Área Total em operação real e o retorno de quem já utiliza o equipamento no campo.' : undefined} />)}
         {isPaca && <ProductFieldPerformance {...getPacaFieldPerformance(content)} />}
         {isPaca && <ProductOperation {...pacaOperation} />}
-        {isPaca && <ProductCompatibility model={product.model ?? product.name} specifications={getPacaCompatibility(content.specifications)} />}
+        {isPaca && <ProductCompatibility model="Plataforma de Área Total" specifications={getPacaCompatibility(content.specifications)} />}
         {isPaca && <ProductTechnicalSpecifications {...pacaTechnicalSpecifications} />}
         {isPaca && <ProductFaq {...pacaFaq} />}
+        {isPaca && <ProductFinalContact />}
       </div>
     </main></>
   );

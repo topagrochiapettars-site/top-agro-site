@@ -17,7 +17,7 @@ export function getPacaFieldPerformance(content: ProductContent) {
   return {
     eyebrow: 'DESEMPENHO NO CAMPO',
     title: 'Mais capacidade para colher culturas de grande volume',
-    introduction: 'A PACA 1000 amplia a faixa de recolhimento da ensiladeira e ajuda a manter uma alimentação mais contínua, especialmente em materiais de maior volume.',
+    introduction: 'A plataforma amplia a faixa de recolhimento da ensiladeira e ajuda a manter uma alimentação mais contínua, especialmente em materiais de maior volume.',
     benefits: (content.benefits ?? []).filter(item => benefitTitles.has(item.title)),
     applicationsTitle: 'Feita para diferentes culturas e formas de plantio',
     applicationsIntroduction: 'Pode trabalhar com culturas semeadas, plantadas em linhas ou consorciadas, conforme a configuração e as condições de operação.',
