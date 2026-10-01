@@ -28,7 +28,7 @@ export function ProductDetail({ product, category, brand }: ProductPageData) {
   const benefits = isPaca ? ['Maior faixa de recolhimento', 'Alimentação mais contínua', 'Menor tendência a embuchamentos em materiais de grande volume'] : content.benefits?.slice(0, 3).map(item => item.title);
   const specs = isPaca ? [
     { id: 'producao', value: 'Até 30 t/h', label: 'Capacidade de trabalho' },
-    { id: 'largura-nominal', value: '1,00 m', label: 'Largura da plataforma' },
+    { id: 'largura-nominal', value: '1,00 m', label: 'Largura de trabalho' },
     { id: 'potencia-trator', value: '65–120 cv', label: 'Potência indicada' },
     { id: 'tambores', value: '2 tambores', label: 'Sistema de recolhimento' },
   ] : (content.highlightSpecIds ?? []).flatMap(id => {
@@ -51,7 +51,7 @@ export function ProductDetail({ product, category, brand }: ProductPageData) {
           <section className={styles.info} aria-labelledby="product-title">
             <p className={styles.brand}>{brand.name}</p>
             <h1 id="product-title">{title}</h1>
-            {product.variantName && <p className={styles.model}>{product.variantName}</p>}
+            {product.variantName && <p className={styles.model}>{isPaca ? 'Kit área total — 1 metro' : product.variantName}</p>}
             {summary && <p className={styles.summary}>{summary}</p>}
             {specs.length > 0 && <dl className={styles.specs}>{specs.map(spec => (
               <div key={spec.id}><dt>{spec.label}</dt><dd>{spec.value}</dd></div>
@@ -63,10 +63,10 @@ export function ProductDetail({ product, category, brand }: ProductPageData) {
             </ul>}
           </section>
         </div>
-        {content.testimonials?.map(testimonial => <ProductTestimonial key={testimonial.id} testimonial={testimonial} media={content.media.find(item => item.id === testimonial.mediaId)} introduction={isPaca ? 'Veja a Plataforma de Área Total em operação real e o retorno de quem já utiliza o equipamento no campo.' : undefined} />)}
+        {content.testimonials?.map(testimonial => <ProductTestimonial key={testimonial.id} testimonial={testimonial} media={content.media.find(item => item.id === testimonial.mediaId)} introduction={isPaca ? 'Veja o kit área total em operação real e o retorno de quem já utiliza o equipamento no campo.' : undefined} />)}
         {isPaca && <ProductFieldPerformance {...getPacaFieldPerformance(content)} />}
         {isPaca && <ProductOperation {...pacaOperation} />}
-        {isPaca && <ProductCompatibility model="Plataforma de Área Total" specifications={getPacaCompatibility(content.specifications)} />}
+        {isPaca && <ProductCompatibility model="plataforma" specifications={getPacaCompatibility(content.specifications)} />}
         {isPaca && <ProductTechnicalSpecifications {...pacaTechnicalSpecifications} />}
         {isPaca && <ProductFaq {...pacaFaq} />}
         {isPaca && <ProductFinalContact />}

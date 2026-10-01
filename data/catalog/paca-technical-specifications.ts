@@ -4,9 +4,9 @@ export const pacaTechnicalSpecifications = {
   items: [
     { label: 'Modelo', value: 'PACA 1000' },
     { label: 'Referência', value: 'PP1000' },
-    { label: 'Largura nominal', value: '1,00 m' },
-    { label: 'Área útil de trabalho', value: 'Aproximadamente 0,80 m' },
-    { label: 'Peso aproximado', value: '200 kg' },
+    { label: 'Largura de trabalho', value: '1,00 m' },
+    { label: 'Área útil de trabalho', value: '0,80 m' },
+    { label: 'Peso aproximado', value: '175 kg' },
     { label: 'Número de tambores', value: '2' },
     { label: 'Potência recomendada do trator', value: '65 a 120 cv' },
     { label: 'Rotação de trabalho', value: '540 rpm' },
@@ -17,7 +17,7 @@ export const pacaTechnicalSpecifications = {
   ],
   secondaryItems: [
     { label: 'NCM', value: '84333000' },
-    { label: 'FINAME', value: '04090170' },
+    { label: 'FINAME', value: '03478685' },
   ],
   note: '*A capacidade pode variar conforme cultura, umidade, volume de massa, regulagem da ensiladeira e condições de operação.',
 };

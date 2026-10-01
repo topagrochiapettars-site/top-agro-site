@@ -1,3 +1,4 @@
+import { pacaFaq } from '../paca-faq';
 import type { ProductFamily } from '../../../types/catalog';
 
 export const datecAreaTotal: ProductFamily = {
@@ -11,15 +12,15 @@ export const datecAreaTotal: ProductFamily = {
       { title: 'Alimentação mais contínua da ensiladeira' },
       { title: 'Menor tendência a embuchamentos em materiais de grande volume' },
       { title: 'Redução de perdas laterais no recolhimento' },
-      { title: 'Menos passadas e maior agilidade na operação' },
+      { title: 'Menos deslocamentos para colher a mesma área' },
       { title: 'Maior liberdade para trabalhar com culturas em linha, semeadas ou consorciadas' },
       { title: 'Indicada para culturas de grande volume', description: 'A PACA 1000 é especialmente indicada para situações com grande volume de massa, como capiaçu, mombaça, cana e capins bem desenvolvidos.' },
     ],
     specifications: [
       { id: 'referencia-datec', label: 'Referência DATEC', value: 'PP 1000' },
-      { id: 'largura-nominal', label: 'Largura nominal da plataforma', value: '1,00 m' },
+      { id: 'largura-nominal', label: 'Largura de trabalho', value: '1,00 m' },
       { id: 'largura-util', label: 'Largura útil de trabalho', value: '0,80 m' },
-      { id: 'peso', label: 'Peso aproximado', value: '200 kg' },
+      { id: 'peso', label: 'Peso aproximado', value: '175 kg' },
       { id: 'tambores', label: 'Quantidade de tambores', value: '2' },
       { id: 'potencia-trator', label: 'Potência indicada do trator', value: '65 a 120 cv' },
       { id: 'rotacao', label: 'Rotação requerida', value: '540 rpm' },
@@ -54,14 +55,7 @@ export const datecAreaTotal: ProductFamily = {
       { title: 'Conduz', description: 'O material é direcionado continuamente para a entrada da ensiladeira.' },
       { title: 'Alimenta', description: 'A ensiladeira recebe o material e realiza a trituração normalmente.' },
     ],
-    faq: [
-      { question: 'A PACA 1000 serve para culturas de grande volume?', answer: 'Sim. O modelo de 1 metro é indicado para trabalhar também com culturas volumosas, como capiaçu, mombaça, cana, milho e diferentes capins.' },
-      { question: 'Ela aumenta a capacidade da ensiladeira?', answer: 'A plataforma melhora e amplia o recolhimento do material, mas a capacidade final de processamento continua dependendo da ensiladeira utilizada, da cultura e das condições de trabalho.' },
-      { question: 'O kit de adaptação está incluso?', answer: 'Sim. O kit é definido conforme a marca e o modelo da ensiladeira e acompanha a venda.' },
-      { question: 'Minha ensiladeira é compatível?', answer: 'Há compatibilidade com diversos modelos JF, Nogueira, Pinheiro, Menta, Netz, Kuhn e outros. A Top Agro confirma a adaptação antes da venda.' },
-      { question: 'A PACA 1000 exige muita manutenção?', answer: 'O sistema é mecânico e simples. Os principais componentes sujeitos a desgaste natural são as facas dos tambores e as contrafacas.' },
-      { question: 'Qual a capacidade de trabalho?', answer: 'Até 30 t/h, variando conforme cultura, ensiladeira, volume de material, regulagem e condições de operação. Não é um rendimento garantido.' },
-    ],
+    faq: pacaFaq.items,
   },
   variants: [{ id: 'paca-1000', name: 'PACA 1000 — 1 metro', model: 'PACA 1000' }],
 };

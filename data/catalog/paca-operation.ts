@@ -1,7 +1,7 @@
 export const pacaOperation = {
   eyebrow: 'FUNCIONAMENTO',
   title: 'Entenda o funcionamento',
-  introduction: 'Em três etapas, veja como a plataforma corta, recolhe, organiza o fluxo e alimenta a ensiladeira.',
+  introduction: 'Em três etapas, veja como o kit corta, recolhe, pré-processa o material e alimenta a ensiladeira.',
   steps: [
     {
       title: 'Corta e recolhe',
@@ -11,13 +11,13 @@ export const pacaOperation = {
     },
     {
       title: 'Puxa e pré-processa',
-      description: 'Os dois tambores puxam o material e fazem o pré-processamento inicial, mantendo a alimentação mais uniforme.',
+      description: 'Os dois tambores puxam o material e realizam um pré-processamento inicial, reduzindo e organizando a cultura antes da entrada na ensiladeira.',
       image: '/products/paca-1000-funcionamento-02-tambores.png',
       alt: 'Ilustração dos dois tambores da PACA 1000 conduzindo o material para o centro',
     },
     {
       title: 'Alimenta a ensiladeira',
-      description: 'O material segue de forma contínua da plataforma para a ensiladeira, melhorando o fluxo de trabalho do conjunto.',
+      description: 'O material pré-processado segue diretamente para o sistema original da ensiladeira, que realiza o processamento final.',
       image: '/products/paca-1000-funcionamento-03-alimenta-ensiladeira.png',
       alt: 'Ilustração do material passando da PACA 1000 para a ensiladeira',
     },
