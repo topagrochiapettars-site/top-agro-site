@@ -17,19 +17,22 @@ const { categories } = load('../data/catalog/categories.ts');
 const { brands } = load('../data/catalog/brands.ts');
 const data = () => structuredClone({ categories, brands, families: [datecAreaTotal, metalAgroMiniFabrica, cimisaMicroCs3b, trevisanLinhaTms] });
 
-test('draft catalog is valid but unavailable through every public lookup', () => {
+test('Kit Área Total is public while other drafts remain unavailable', () => {
   assert.deepEqual(validateCatalog(data()), []);
-  assert.deepEqual(catalog.listProducts(), []);
-  assert.deepEqual(catalog.listRoutes(), []);
-  assert.deepEqual(catalog.listCategories(), []);
-  assert.deepEqual(catalog.listBrands(), []);
-  for (const family of data().families) {
+  assert.deepEqual(catalog.listProducts().map(item => item.id), [datecAreaTotal.id]);
+  assert.deepEqual(catalog.listRoutes(), [{ category: datecAreaTotal.categoryId, slug: datecAreaTotal.slug }]);
+  assert.deepEqual(catalog.listCategories().map(item => item.id), [datecAreaTotal.categoryId]);
+  assert.deepEqual(catalog.listBrands().map(item => item.id), [datecAreaTotal.brandId]);
+  const { getPublicProductPage } = load('../lib/catalog/product-page.ts');
+  assert.equal(getPublicProductPage(datecAreaTotal.slug).product.model, 'PACA 1000');
+  for (const family of data().families.filter(item => item.status === 'draft')) {
     const category = categories.find(item => item.id === family.categoryId);
     assert.deepEqual(catalog.listProducts({ categoryId: family.categoryId, featured: false }), []);
     assert.equal(catalog.getProduct(family.id), undefined);
     assert.equal(catalog.resolveProduct(family.id), undefined);
     for (const variant of family.variants) assert.equal(catalog.resolveProduct(family.id, variant.id), undefined);
     assert.equal(catalog.getByRoute(category.slug, family.slug), undefined);
+    assert.equal(getPublicProductPage(family.slug), undefined);
     assert.deepEqual(catalog.getRelated(family.id), []);
   }
 });

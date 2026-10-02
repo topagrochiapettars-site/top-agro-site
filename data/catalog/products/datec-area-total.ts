@@ -4,7 +4,7 @@ import type { ProductFamily } from '../../../types/catalog';
 export const datecAreaTotal: ProductFamily = {
   id: 'datec-area-total', slug: 'datec-plataforma-area-total',
   name: 'Plataforma de Área Total DATEC', categoryId: 'plataformas-area-total', brandId: 'datec',
-  status: 'draft', priority: 'P1', featured: false,
+  status: 'published', priority: 'P1', featured: false,
   content: {
     summary: 'Amplia a faixa de recolhimento da ensiladeira e facilita o trabalho com milho, capins, capiaçu, cana, sorgo e outras culturas compatíveis, com alimentação mais contínua, inclusive em culturas de grande volume.',
     benefits: [
