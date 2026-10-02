@@ -48,7 +48,7 @@ export function ProductGallery({ media, primaryImageId }: { media: Media[]; prim
       </div>
       <div className={styles.thumbnails} aria-label="Selecionar mídia">
         {items.map((item, position) => <button key={item.id} type="button" aria-label={`Mostrar ${item.type === 'video' ? 'vídeo' : 'imagem'} ${position + 1}: ${item.description}`} aria-pressed={item.id === selected.id} onClick={() => select(item.id)}>
-          {item.type === 'video' ? <span className={styles.videoThumbnail}><video src={`${item.src}#t=0.1`} muted playsInline preload="metadata" tabIndex={-1} aria-hidden="true" /><Play size={20} aria-hidden="true" /></span> : <Image src={item.src} alt="" width={64} height={64} unoptimized style={{ objectFit: 'contain' }} />}
+          {item.type === 'video' ? <span className={styles.videoThumbnail}>{item.poster && <Image src={item.poster} alt="" fill unoptimized style={{ objectFit: 'contain', pointerEvents: 'none' }} />}<Play size={20} aria-hidden="true" /></span> : <Image src={item.src} alt="" width={64} height={64} unoptimized style={{ objectFit: 'contain' }} />}
         </button>)}
       </div>
     </>}
