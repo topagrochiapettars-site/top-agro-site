@@ -8,6 +8,7 @@ import { ArrowRight, ArrowUpRight } from 'lucide-react';
 
 import { SiteHeader } from '../components/site-header';
 import { WhatsAppIcon } from '../components/whatsapp-icon';
+import { FeaturedEquipment } from '../components/featured-equipment';
 
 const brands = ['Panter', 'Trevisan', 'São José', 'MetalAgro', 'KLR Implementos', 'Kawashima', 'Industrial DATEC', 'Incomagri', 'Cimisa'];
 const categories = [
@@ -32,7 +33,7 @@ export default function Home() {
       <section className="section wrap" id="equipamentos">
         <div className="section-heading"><div><span className="eyebrow">SOLUÇÕES PARA O CAMPO</span><h2>Comece pela sua necessidade.</h2></div><p>Encontre a linha de equipamento e converse com a equipe para confirmar modelos, disponibilidade e condições.</p></div>
         <div className="category-grid">{categories.map(([index, title, description]) => <a key={title} href="/equipamentos" className="category-item"><span>{index}</span><h3>{title}</h3><p>{description}</p><div>Ver equipamentos <ArrowUpRight size={18} /></div></a>)}</div>
-        <article className="featured-product"><div className="product-photo"><img src="/products/trevisan-equipamento.webp" alt="Tratador e misturador de sementes Trevisan TMS350" width="540" height="720" loading="lazy" /></div><div className="product-copy"><span className="eyebrow">EQUIPAMENTO EM DESTAQUE</span><h2>Trevisan<br />TMS350</h2><p>Tratador e misturador de sementes. Consulte disponibilidade, preço, frete e condições diretamente com a equipe comercial.</p><button className="text-action" onClick={() => selectAndContact('Trevisan TMS350')}>Consultar este equipamento <ArrowRight size={18} /></button><small>Imagem do acervo disponibilizado pela Top Agro.</small></div></article>
+        <FeaturedEquipment onContact={selectAndContact} />
         <div className="brands-block"><div><span className="eyebrow">MARCAS</span><h2>Uma seleção que cresce com a sua demanda.</h2></div><div className="brand-list">{brands.map((brand, index) => <button key={brand} onClick={() => selectAndContact(brand)}><span>{String(index + 1).padStart(2, '0')}</span>{brand}<ArrowUpRight size={16} /></button>)}</div></div>
       </section>
 
