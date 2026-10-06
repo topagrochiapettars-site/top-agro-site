@@ -95,3 +95,20 @@
   .category-item > div { margin-top: 12px; padding-top: 8px; }
   .brand-list button { grid-template-columns: 24px minmax(0, 1fr) 16px; gap: 8px; min-height: 44px; padding: 8px 4px; line-height: 1.4; }
 }
+
+/* Approved storefront section: integrated paper background and full photo. */
+.about-section { background: var(--paper); padding-block: 64px; }
+.about-grid { grid-template-columns: 1.2fr 1fr; gap: 48px; }
+.about-image { height: auto; aspect-ratio: 4 / 3; }
+.about-image img { object-position: center; }
+.about-copy h2 { font-size: clamp(36px, 3.3vw, 48px); }
+@media (max-width: 1023px) {
+  .about-section { padding-block: 48px; }
+  .about-grid { grid-template-columns: 1fr; gap: 28px; }
+  .about-image { aspect-ratio: 4 / 3; height: auto; }
+}
+@media (max-width: 767px) {
+  .about-section { padding-block: 40px; }
+  .about-grid { gap: 24px; }
+  .about-copy h2 { font-size: 36px; }
+}
