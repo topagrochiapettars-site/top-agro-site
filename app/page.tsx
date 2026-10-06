@@ -1,7 +1,8 @@
 'use client';
+/* oxlint-disable next/no-html-link-for-pages -- Native links ensure catalog navigation works in the deployed Vinext runtime. */
 /* oxlint-disable next/no-img-element -- Preserve approved Home images during header extraction. */
 import { useState } from 'react';
-import Link from 'next/link';
+
 import { getWhatsAppLink, whatsappContacts } from '../lib/whatsapp';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
 
@@ -25,12 +26,12 @@ export default function Home() {
 
     <main id="inicio">
       <section className="hero"><img className="hero-photo" src="/products/hero-grade-sunlight.jpg" alt="Trator com grade agrícola trabalhando em uma lavoura sob céu azul e luz entre as nuvens" width="1672" height="941" fetchPriority="high" /><div className="hero-overlay" />
-        <div className="wrap hero-inner"><div className="hero-copy"><span className="eyebrow light">MÁQUINAS · IMPLEMENTOS · CAMPO</span><h1>Equipamento certo para quem faz o campo acontecer.</h1><p>A Top Agro aproxima você das máquinas e implementos que a sua operação precisa, com negociação direta de preço, frete e financiamento.</p><div className="hero-actions"><a href="#contato" className="button button-gold"><WhatsAppIcon size={19} /> Falar com um especialista</a><Link href="/equipamentos" className="button button-outline">Explorar equipamentos <ArrowRight size={18} /></Link></div><div className="hero-signature"><span />A força vem com a gente.</div></div></div>
+        <div className="wrap hero-inner"><div className="hero-copy"><span className="eyebrow light">MÁQUINAS · IMPLEMENTOS · CAMPO</span><h1>Equipamento certo para quem faz o campo acontecer.</h1><p>A Top Agro aproxima você das máquinas e implementos que a sua operação precisa, com negociação direta de preço, frete e financiamento.</p><div className="hero-actions"><a href="#contato" className="button button-gold"><WhatsAppIcon size={19} /> Falar com um especialista</a><a href="/equipamentos" className="button button-outline">Explorar equipamentos <ArrowRight size={18} /></a></div><div className="hero-signature"><span />A força vem com a gente.</div></div></div>
         <svg className="route-line hero-route" viewBox="0 0 900 95" preserveAspectRatio="none" aria-hidden="true"><path d="M0 74 C180 74 230 18 415 32 S690 88 900 20" /><circle cx="415" cy="32" r="5" /></svg>
       </section>
       <section className="section wrap" id="equipamentos">
         <div className="section-heading"><div><span className="eyebrow">SOLUÇÕES PARA O CAMPO</span><h2>Comece pela sua necessidade.</h2></div><p>Encontre a linha de equipamento e converse com a equipe para confirmar modelos, disponibilidade e condições.</p></div>
-        <div className="category-grid">{categories.map(([index, title, description]) => <Link key={title} href="/equipamentos" className="category-item"><span>{index}</span><h3>{title}</h3><p>{description}</p><div>Ver equipamentos <ArrowUpRight size={18} /></div></Link>)}</div>
+        <div className="category-grid">{categories.map(([index, title, description]) => <a key={title} href="/equipamentos" className="category-item"><span>{index}</span><h3>{title}</h3><p>{description}</p><div>Ver equipamentos <ArrowUpRight size={18} /></div></a>)}</div>
         <article className="featured-product"><div className="product-photo"><img src="/products/trevisan-equipamento.webp" alt="Tratador e misturador de sementes Trevisan TMS350" width="540" height="720" loading="lazy" /></div><div className="product-copy"><span className="eyebrow">EQUIPAMENTO EM DESTAQUE</span><h2>Trevisan<br />TMS350</h2><p>Tratador e misturador de sementes. Consulte disponibilidade, preço, frete e condições diretamente com a equipe comercial.</p><button className="text-action" onClick={() => selectAndContact('Trevisan TMS350')}>Consultar este equipamento <ArrowRight size={18} /></button><small>Imagem do acervo disponibilizado pela Top Agro.</small></div></article>
         <div className="brands-block"><div><span className="eyebrow">MARCAS</span><h2>Uma seleção que cresce com a sua demanda.</h2></div><div className="brand-list">{brands.map((brand, index) => <button key={brand} onClick={() => selectAndContact(brand)}><span>{String(index + 1).padStart(2, '0')}</span>{brand}<ArrowUpRight size={16} /></button>)}</div></div>
       </section>
