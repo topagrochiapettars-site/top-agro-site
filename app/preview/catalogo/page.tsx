@@ -11,8 +11,8 @@ import { getWhatsAppLink, whatsappContacts } from '../../../lib/whatsapp';
 const categories = [
   { name: 'Silagem e forragem', icon: Wheat, text: 'Da colheita ao ensaque da silagem.', products: ['Plataformas de área total', 'Ensacadeiras de silagem'] },
   { name: 'Produção de ração', icon: Factory, text: 'Equipamentos para preparar ração na propriedade.', products: ['Fábricas de ração', 'Trituradores', 'Misturadores de ração'] },
-  { name: 'Sementes e plantio', icon: Sprout, text: 'Preparação de sementes e acompanhamento do plantio.', products: ['Tratadores de sementes', 'Classificadores de sementes', 'Monitores de sementes'] },
-  { name: 'Solo e manejo da lavoura', icon: Tractor, text: 'Aplicação de insumos e manutenção de áreas.', products: ['Distribuidores de ureia', 'Comandos de pulverização', 'Roçadeiras'] },
+  { name: 'Sementes e monitoramento', icon: Sprout, text: 'Preparação de sementes e acompanhamento do plantio.', products: ['Tratadores de sementes', 'Classificadores de sementes', 'Monitores de sementes'] },
+  { name: 'Manejo da lavoura', icon: Tractor, text: 'Aplicação de insumos e manutenção de áreas.', products: ['Distribuidores de ureia', 'Comandos de pulverização', 'Roçadeiras'] },
   { name: 'Transporte e movimentação', icon: Truck, text: 'Equipamentos para movimentar materiais na propriedade.', products: ['Roscas transportadoras', 'Carretas basculantes'] },
   { name: 'Florestal e lenha', icon: Trees, text: 'Manejo de madeira e preparo de lenha.', products: ['Rachadores de lenha', 'Garras florestais'] },
 ];
