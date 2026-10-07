@@ -49,7 +49,7 @@ export default function CatalogPreview() {
         </article>)}</div>
         {!visible.length && <div className={styles.empty}><h3>Nenhuma categoria encontrada.</h3><p>Tente buscar por roçadeira, sementes ou ração.</p><button onClick={() => setQuery('')}>Mostrar todas as categorias</button></div>}
       </section>
-      <section className={`wrap ${styles.help}`}><div className={styles.helpCopy}><span className={styles.label}>Escolha com orientação</span><h2>Não sabe qual equipamento escolher?</h2><p>Conte o que precisa fazer na sua propriedade. A equipe Top Agro ajuda você a encontrar as opções para o seu trabalho.</p></div><Link className={styles.helpButton} href="/#contato"><WhatsAppIcon size={21} />Falar com um especialista<ArrowRight size={18} /></Link></section>
+      <section className={`wrap ${styles.help}`}><div className={styles.helpCopy}><span className={styles.label}>Escolha com orientação</span><h2>Não sabe qual equipamento escolher?</h2><p>Conte o que precisa fazer na sua propriedade. A equipe Top Agro ajuda você a encontrar as opções para o seu trabalho.</p></div><Link className={styles.helpButton} href="/#contato"><WhatsAppIcon size={21} />Fale com um de nossos colaboradores<ArrowRight size={18} /></Link></section>
     </main>
     <footer className={styles.footer}><div className="wrap"><img src="/brand/logo-horizontal-transparent.png" alt="Top Agro" width="175" height="44" /><p>Máquinas e implementos agrícolas<br />Chiapetta · Rio Grande do Sul</p><Link href="/">Voltar para o início <ArrowRight size={16} /></Link></div></footer>
   </div>;
