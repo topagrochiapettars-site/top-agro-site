@@ -1,8 +1,8 @@
 import type { TaxonomyEntry } from '../../types/catalog';
 
-// Initial taxonomy for the pilots; does not change Home labels or create routes.
+// Shared category identifiers used by the product catalog.
 export const categories: TaxonomyEntry[] = [
-  { id: 'plataformas-area-total', slug: 'plataformas-area-total', name: 'Plataformas de área total' },
+  { id: 'silagem-e-forragem', slug: 'silagem-e-forragem', name: 'Silagem e forragem' },
   { id: 'fabricas-racao', slug: 'fabricas-racao', name: 'Fábricas de ração' },
   { id: 'graos-sementes-plantio', slug: 'graos-sementes-plantio', name: 'Grãos, sementes e plantio' },
 ];

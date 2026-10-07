@@ -42,7 +42,7 @@ export function ProductDetail({ product, category, brand }: ProductPageData) {
         <nav aria-label="Breadcrumb" className={styles.breadcrumb}>
           <ol>
             <li><Link href="/">Início</Link></li>
-            <li><span className={styles.desktopCategory}>{isPaca ? 'Plataformas de Área Total' : category.name}</span><span className={styles.mobileCategory}>{isPaca ? 'Área Total' : category.name}</span></li>
+            <li>{category.id === 'silagem-e-forragem' ? <Link href={`/produtos/${category.slug}`}>{category.name}</Link> : <span>{category.name}</span>}</li>
             <li aria-current="page">{product.model ?? product.name}</li>
           </ol>
         </nav>

@@ -9,7 +9,7 @@ import styles from './preview.module.css';
 import { getWhatsAppLink, whatsappContacts } from '../../../lib/whatsapp';
 
 const categories = [
-  { name: 'Silagem e forragem', icon: Wheat, text: 'Da colheita ao ensaque da silagem.', products: ['Plataformas de área total', 'Ensacadeiras de silagem'] },
+  { name: 'Silagem e forragem', icon: Wheat, text: 'Da colheita ao ensaque da silagem.', products: ['Plataformas de área total', 'Ensacadeiras de silagem'], href: '/produtos/silagem-e-forragem' },
   { name: 'Produção de ração', icon: Factory, text: 'Equipamentos para preparar ração na propriedade.', products: ['Fábricas de ração', 'Trituradores', 'Misturadores de ração'] },
   { name: 'Sementes e monitoramento', icon: Sprout, text: 'Preparação de sementes e acompanhamento do plantio.', products: ['Tratadores de sementes', 'Classificadores de sementes', 'Monitores de sementes'] },
   { name: 'Manejo da lavoura', icon: Tractor, text: 'Aplicação de insumos e manutenção de áreas.', products: ['Distribuidores de ureia', 'Comandos de pulverização', 'Roçadeiras'] },
@@ -45,7 +45,7 @@ export default function CatalogPreview() {
         <div className={styles.heading}><div><h2>Explore por categoria</h2><p>Escolha a linha de equipamentos para o seu trabalho.</p></div><span>{visible.length} categorias</span></div>
         <div className={styles.grid}>{visible.map(item => <article className={styles.card} key={item.name}>
           <div className={styles.categoryPhoto}><img src={`/categories/${categoryImages[categories.indexOf(item)][0]}.webp`} alt={categoryImages[categories.indexOf(item)][1]} width="1024" height="683" loading={categories.indexOf(item) < 3 ? 'eager' : 'lazy'} /></div>
-          <div className={styles.cardBody}><h3>{item.name}</h3><p>{item.text}</p><ul>{item.products.map(product => <li key={product}>{product}</li>)}</ul><button onClick={() => setSelected(selected === item.name ? null : item.name)} aria-expanded={selected === item.name}>Consultar equipamentos <ArrowRight size={18} /></button>{selected === item.name && <div className={styles.note}><p>Fale com a equipe sobre {item.name.toLowerCase()}:</p>{Object.values(whatsappContacts).map(contact => <a className={styles.sellerLink} key={contact.number} href={getWhatsAppLink(contact, item.name)} target="_blank" rel="noopener noreferrer"><WhatsAppIcon size={18} /> Falar com {contact.name}</a>)}</div>}</div>
+          <div className={styles.cardBody}><h3>{item.name}</h3><p>{item.text}</p><ul>{item.products.map(product => <li key={product}>{product}</li>)}</ul>{item.href ? <Link className={styles.categoryLink} href={item.href}>Ver equipamentos <ArrowRight size={18} /></Link> : <button onClick={() => setSelected(selected === item.name ? null : item.name)} aria-expanded={selected === item.name}>Consultar equipamentos <ArrowRight size={18} /></button>}{selected === item.name && <div className={styles.note}><p>Fale com a equipe sobre {item.name.toLowerCase()}:</p>{Object.values(whatsappContacts).map(contact => <a className={styles.sellerLink} key={contact.number} href={getWhatsAppLink(contact, item.name)} target="_blank" rel="noopener noreferrer"><WhatsAppIcon size={18} /> Falar com {contact.name}</a>)}</div>}</div>
         </article>)}</div>
         {!visible.length && <div className={styles.empty}><h3>Nenhuma categoria encontrada.</h3><p>Tente buscar por roçadeira, sementes ou ração.</p><button onClick={() => setQuery('')}>Mostrar todas as categorias</button></div>}
       </section>
