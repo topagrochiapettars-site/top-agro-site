@@ -1,4 +1,5 @@
 'use client';
+/* oxlint-disable next/no-html-link-for-pages -- Native category navigation for the deployed Vinext runtime. */
 /* oxlint-disable next/no-img-element -- Reuse the approved brand logo in this local design preview. */
 import { useState } from 'react';
 import Link from 'next/link';
@@ -45,7 +46,7 @@ export default function CatalogPreview() {
         <div className={styles.heading}><div><h2>Explore por categoria</h2><p>Escolha a linha de equipamentos para o seu trabalho.</p></div><span>{visible.length} categorias</span></div>
         <div className={styles.grid}>{visible.map(item => <article className={styles.card} key={item.name}>
           <div className={styles.categoryPhoto}><img src={`/categories/${categoryImages[categories.indexOf(item)][0]}.webp`} alt={categoryImages[categories.indexOf(item)][1]} width="1024" height="683" loading={categories.indexOf(item) < 3 ? 'eager' : 'lazy'} /></div>
-          <div className={styles.cardBody}><h3>{item.name}</h3><p>{item.text}</p><ul>{item.products.map(product => <li key={product}>{product}</li>)}</ul>{item.href ? <Link className={styles.categoryLink} href={item.href}>Ver equipamentos <ArrowRight size={18} /></Link> : <button onClick={() => setSelected(selected === item.name ? null : item.name)} aria-expanded={selected === item.name}>Consultar equipamentos <ArrowRight size={18} /></button>}{selected === item.name && <div className={styles.note}><p>Fale com a equipe sobre {item.name.toLowerCase()}:</p>{Object.values(whatsappContacts).map(contact => <a className={styles.sellerLink} key={contact.number} href={getWhatsAppLink(contact, item.name)} target="_blank" rel="noopener noreferrer"><WhatsAppIcon size={18} /> Falar com {contact.name}</a>)}</div>}</div>
+          <div className={styles.cardBody}><h3>{item.name}</h3><p>{item.text}</p><ul>{item.products.map(product => <li key={product}>{product}</li>)}</ul>{item.href ? <a className={styles.categoryLink} href={item.href}>Ver equipamentos <ArrowRight size={18} /></a> : <button onClick={() => setSelected(selected === item.name ? null : item.name)} aria-expanded={selected === item.name}>Consultar equipamentos <ArrowRight size={18} /></button>}{selected === item.name && <div className={styles.note}><p>Fale com a equipe sobre {item.name.toLowerCase()}:</p>{Object.values(whatsappContacts).map(contact => <a className={styles.sellerLink} key={contact.number} href={getWhatsAppLink(contact, item.name)} target="_blank" rel="noopener noreferrer"><WhatsAppIcon size={18} /> Falar com {contact.name}</a>)}</div>}</div>
         </article>)}</div>
         {!visible.length && <div className={styles.empty}><h3>Nenhuma categoria encontrada.</h3><p>Tente buscar por roçadeira, sementes ou ração.</p><button onClick={() => setQuery('')}>Mostrar todas as categorias</button></div>}
       </section>

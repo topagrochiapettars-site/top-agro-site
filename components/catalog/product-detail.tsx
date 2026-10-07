@@ -1,3 +1,4 @@
+/* oxlint-disable next/no-html-link-for-pages -- Native category navigation for the deployed Vinext runtime. */
 import { Check } from 'lucide-react';
 import { SiteHeader } from '../site-header';
 import Link from 'next/link';
@@ -42,7 +43,7 @@ export function ProductDetail({ product, category, brand }: ProductPageData) {
         <nav aria-label="Breadcrumb" className={styles.breadcrumb}>
           <ol>
             <li><Link href="/">Início</Link></li>
-            <li>{category.id === 'silagem-e-forragem' ? <Link href={`/produtos/${category.slug}`}>{category.name}</Link> : <span>{category.name}</span>}</li>
+            <li>{category.id === 'silagem-e-forragem' ? <a href={`/produtos/${category.slug}`}>{category.name}</a> : <span>{category.name}</span>}</li>
             <li aria-current="page">{product.model ?? product.name}</li>
           </ol>
         </nav>

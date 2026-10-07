@@ -1,5 +1,5 @@
 /* oxlint-disable next/no-img-element -- Use the existing optimized catalog photos. */
-import Link from 'next/link';
+/* oxlint-disable next/no-html-link-for-pages -- Native navigation works reliably in the deployed Vinext runtime. */
 import { ArrowRight } from 'lucide-react';
 import { catalog } from '../../lib/catalog';
 import { getWhatsAppLink, whatsappContacts } from '../../lib/whatsapp';
@@ -27,7 +27,7 @@ export function CategoryPage({ name, description, categoryId }: Props) {
       <section className={styles.hero}>
         <div className="wrap">
           <nav className={styles.breadcrumb} aria-label="Caminho da página">
-            <ol><li><Link href="/">Início</Link></li><li><Link href="/equipamentos">Equipamentos</Link></li><li aria-current="page">{name}</li></ol>
+            <ol><li><a href="/">Início</a></li><li><a href="/equipamentos">Equipamentos</a></li><li aria-current="page">{name}</li></ol>
           </nav>
           <h1>{name}</h1>
           <p>{description}</p>
@@ -47,16 +47,16 @@ export function CategoryPage({ name, description, categoryId }: Props) {
             return spec ? [spec] : [];
           });
           return <article className={styles.product} key={family.id}>
-            {image && <Link className={styles.photo} href={href} aria-label={`Ver ${product.name}`} tabIndex={-1}><img src={image.src} alt={image.description} width={image.width} height={image.height} /></Link>}
+            {image && <a className={styles.photo} href={href} aria-label={`Ver ${product.name}`} tabIndex={-1}><img src={image.src} alt={image.description} width={image.width} height={image.height} /></a>}
             <div className={styles.body}>
               <p className={styles.brand}>{brands.find(brand => brand.id === family.brandId)?.name}</p>
-              <h3><Link href={href}>{product.name}</Link></h3>
+              <h3><a href={href}>{product.name}</a></h3>
               {product.variantName && <p className={styles.model}>{product.variantName}</p>}
               {specs.length > 0 && <dl className={styles.specs}>{specs.map(spec => <div key={spec.id}>
                 <dt>{spec.id === 'potencia-trator' ? 'Potência do trator' : spec.label}</dt>
                 <dd>{spec.id === 'producao' ? spec.value.split(',')[0] : spec.id === 'potencia-trator' ? spec.value.replace(' a ', '–') : spec.value}</dd>
               </div>)}</dl>}
-              <Link className={styles.primary} href={href}>Ver detalhes <ArrowRight size={18} aria-hidden="true" /></Link>
+              <a className={styles.primary} href={href}>Ver detalhes <ArrowRight size={18} aria-hidden="true" /></a>
             </div>
           </article>;
         })}</div>
@@ -67,6 +67,6 @@ export function CategoryPage({ name, description, categoryId }: Props) {
         <div className={styles.contacts}>{Object.values(whatsappContacts).map(contact => <a key={contact.number} href={getWhatsAppLink(contact, name)} target="_blank" rel="noopener noreferrer"><WhatsAppIcon size={20} />Falar com {contact.name}</a>)}</div>
       </section>
     </main>
-    <footer className={styles.footer}><div className="wrap"><img src="/brand/logo-horizontal-transparent.png" alt="Top Agro" width="175" height="44" /><Link href="/equipamentos">Todas as categorias <ArrowRight size={18} aria-hidden="true" /></Link></div></footer>
+    <footer className={styles.footer}><div className="wrap"><img src="/brand/logo-horizontal-transparent.png" alt="Top Agro" width="175" height="44" /><a href="/equipamentos">Todas as categorias <ArrowRight size={18} aria-hidden="true" /></a></div></footer>
   </div>;
 }
