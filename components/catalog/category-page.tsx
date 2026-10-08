@@ -63,7 +63,7 @@ export function CategoryPage({ name, description, categoryId }: Props) {
       </section>
       <section className={`wrap ${styles.help}`} aria-labelledby="category-help">
         <h2 id="category-help">Precisa de ajuda para escolher?</h2>
-        <p>Conte o que pretende colher e informe a marca e o modelo da sua ensiladeira. Nossa equipe ajuda você a confirmar a aplicação e a adaptação do equipamento.</p>
+        <p>Conte como você produz silagem, o volume de trabalho e quais equipamentos já utiliza. Nossa equipe ajuda você a escolher o modelo adequado à sua operação.</p>
         <div className={styles.contacts}>{Object.values(whatsappContacts).map(contact => <a key={contact.number} href={getWhatsAppLink(contact, name)} target="_blank" rel="noopener noreferrer"><WhatsAppIcon size={20} />Falar com {contact.name}</a>)}</div>
       </section>
     </main>

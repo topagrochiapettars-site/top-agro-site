@@ -3,6 +3,7 @@ import { Check } from 'lucide-react';
 import { SiteHeader } from '../site-header';
 import Link from 'next/link';
 import { ProductGallery } from './product-gallery';
+import { ProductContentSections } from './product-content-sections';
 import { ProductTestimonial } from './product-testimonial';
 import { ProductFieldPerformance } from './product-field-performance';
 import { ProductCompatibility } from './product-compatibility';
@@ -57,7 +58,7 @@ export function ProductDetail({ product, category, brand }: ProductPageData) {
             {specs.length > 0 && <dl className={styles.specs}>{specs.map(spec => (
               <div key={spec.id}><dt>{spec.label}</dt><dd>{spec.value}</dd></div>
             ))}</dl>}
-            <Link href="/#contato" className={styles.cta}>Falar com a equipe</Link>
+            {isPaca ? <Link href="/#contato" className={styles.cta}>Falar com a equipe</Link> : <a href="#produto-contato" className={styles.cta}>Falar com um colaborador</a>}
             {isPaca && <p className={styles.ctaHint}>Informe a marca e o modelo da sua ensiladeira.</p>}
             {!!benefits?.length && <ul className={styles.benefits} aria-label="Principais benefícios">
               {benefits.map(benefit => <li key={benefit}><Check size={16} aria-hidden="true" /><span>{benefit}</span></li>)}
@@ -71,6 +72,7 @@ export function ProductDetail({ product, category, brand }: ProductPageData) {
         {isPaca && <ProductTechnicalSpecifications {...pacaTechnicalSpecifications} />}
         {isPaca && <ProductFaq {...pacaFaq} />}
         {isPaca && <ProductFinalContact />}
+        {!isPaca && <ProductContentSections product={product} />}
       </div>
     </main></>
   );

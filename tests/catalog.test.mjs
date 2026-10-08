@@ -19,10 +19,10 @@ const data = () => structuredClone({ categories, brands, families: [datecAreaTot
 
 test('Kit Área Total is public while other drafts remain unavailable', () => {
   assert.deepEqual(validateCatalog(data()), []);
-  assert.deepEqual(catalog.listProducts().map(item => item.id), [datecAreaTotal.id]);
-  assert.deepEqual(catalog.listRoutes(), [{ category: datecAreaTotal.categoryId, slug: datecAreaTotal.slug }]);
+  assert.deepEqual(catalog.listProducts().map(item => item.id), [datecAreaTotal.id, 'primus-p2-gasolina']);
+  assert.deepEqual(catalog.listRoutes(), [{ category: datecAreaTotal.categoryId, slug: datecAreaTotal.slug }, { category: datecAreaTotal.categoryId, slug: 'primus-p2-gasolina' }]);
   assert.deepEqual(catalog.listCategories().map(item => item.id), [datecAreaTotal.categoryId]);
-  assert.deepEqual(catalog.listBrands().map(item => item.id), [datecAreaTotal.brandId]);
+  assert.deepEqual(catalog.listBrands().map(item => item.id), ['primus', datecAreaTotal.brandId]);
   const { getPublicProductPage } = load('../lib/catalog/product-page.ts');
   assert.equal(getPublicProductPage(datecAreaTotal.slug).product.model, 'PACA 1000');
   for (const family of data().families.filter(item => item.status === 'draft')) {
@@ -119,4 +119,13 @@ test('duplicate highlights and commercial relations are rejected', () => {
   assert.ok(validateCatalog(input).some(error => error.includes('.highlights')));
   assert.ok(validateCatalog(input).some(error => error.includes('.related')));
   assert.throws(() => createCatalogQueries(input));
+});
+const product = catalog.resolveProduct('primus-p2-gasolina');
+test('P2 Gasolina exposes its own verified specifications and local media', () => {
+  assert.equal(product.model, 'P2 Gasolina');
+  assert.equal(product.content.specifications.find(item => item.id === 'producao').value, 'Até 6 t/h');
+  assert.equal(product.content.specifications.find(item => item.id === 'peso-saco').value, 'Até 35 kg');
+  assert.equal(product.content.specifications.some(item => item.id === 'dimensoes'), false);
+  assert.equal(product.content.documents, undefined);
+  for (const media of product.content.media) assert.ok(fs.existsSync(new URL(`../public${media.src}`, import.meta.url)));
 });

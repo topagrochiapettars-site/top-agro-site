@@ -1,5 +1,6 @@
 import type { Catalog } from '../../types/catalog';
 import { categories } from '../../data/catalog/categories';
+import { primusP2Gasolina } from '../../data/catalog/products/primus-p2-gasolina';
 import { brands } from '../../data/catalog/brands';
 import { datecAreaTotal } from '../../data/catalog/products/datec-area-total';
 import { metalAgroMiniFabrica } from '../../data/catalog/products/metal-agro-mini-fabrica';
@@ -36,4 +37,4 @@ export function createCatalogQueries(input: Catalog) {
   function categoriesFor(id: string) { return catalog.categories.find(item => item.id === id)!.slug; }
 }
 
-export const catalog = createCatalogQueries({ categories, brands, families: [datecAreaTotal, metalAgroMiniFabrica, cimisaMicroCs3b, trevisanLinhaTms] });
+export const catalog = createCatalogQueries({ categories, brands, families: [datecAreaTotal, primusP2Gasolina, metalAgroMiniFabrica, cimisaMicroCs3b, trevisanLinhaTms] });

@@ -1,0 +1,14 @@
+.section { padding-block: 48px; border-top: 1px solid var(--line); margin-top: 32px; scroll-margin-top: 100px; }
+.section h2 { font-size: clamp(28px, 4vw, 40px); line-height: 1.15; letter-spacing: -.035em; margin: 12px 0 24px; }
+.steps { display: grid; gap: 32px; list-style: none; padding: 0; }
+.number { color: var(--green); font-weight: 700; font-size: 24px; }
+.steps h3 { font-size: 20px; margin: 12px 0; }
+.steps p, .contact > p { color: var(--muted); font-size: 16px; line-height: 1.65; max-width: 720px; }
+.note { color: var(--muted); font-size: 14px; line-height: 1.6; margin-top: 24px; max-width: 800px; }
+.technical { margin: 0; }
+.technical > div { display: grid; gap: 8px; padding: 16px 0; border-bottom: 1px solid var(--line); }
+.technical dt { color: var(--muted); font-size: 14px; }
+.technical dd { margin: 0; font-size: 16px; font-weight: 600; line-height: 1.5; }
+.contacts { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 24px; }
+.contacts a { display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 50px; padding: 14px 24px; background: var(--green); color: var(--white); font-weight: 700; width: 100%; }
+@media (min-width: 768px) { .steps { grid-template-columns: repeat(3, minmax(0, 1fr)); } .technical > div { grid-template-columns: 1fr 2fr; gap: 24px; } .contacts a { width: auto; } .section { padding-block: 64px; } }
